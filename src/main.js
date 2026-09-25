@@ -38,6 +38,7 @@ function home() {
       </nav>
     </section>
     <a class="brand-mark" href="/" aria-label="Supervoid home">
+      <img class="brand-logo" alt="Supervoid Editions logo">
       <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span>
       <span class="book-mark"><i></i><b></b></span><span class="void-mark"></span>
     </a>
@@ -60,6 +61,40 @@ function catalogue() {
 
 const path = window.location.pathname.replace(/\/$/, '') || '/';
 document.querySelector('#app').innerHTML = path === '/catalogue' ? catalogue() : home();
+
+const firstAvailableAsset = (paths, onLoad) => {
+  const tryPath = (index) => {
+    if (index >= paths.length) return;
+    const image = new Image();
+    image.onload = () => onLoad(paths[index]);
+    image.onerror = () => tryPath(index + 1);
+    image.src = paths[index];
+  };
+  tryPath(0);
+};
+
+const isMobile = window.matchMedia('(max-width: 700px)').matches;
+const backgroundNames = isMobile
+  ? ['background-mobile.webp', 'background-mobile.png', 'background-mobile.jpg', 'mobile-background.webp', 'mobile-background.png', 'mobile-background.jpg']
+  : ['background-desktop.webp', 'background-desktop.png', 'background-desktop.jpg', 'desktop-background.webp', 'desktop-background.png', 'desktop-background.jpg'];
+
+firstAvailableAsset(backgroundNames.map((name) => `/assets/${name}`), (url) => {
+  document.querySelectorAll('.space-background').forEach((background) => {
+    background.style.setProperty('--uploaded-background', `url("${url}")`);
+    background.classList.add('has-uploaded-background');
+  });
+});
+
+const logo = document.querySelector('.brand-logo');
+if (logo) {
+  firstAvailableAsset(
+    ['/assets/supervoid-logo-01.webp', '/assets/supervoid-logo-01.png', '/assets/supervoid-logo-01.jpg'],
+    (url) => {
+      logo.src = url;
+      logo.parentElement.classList.add('has-uploaded-logo');
+    }
+  );
+}
 
 const form = document.querySelector('#newsletter-form');
 form?.addEventListener('submit', async (event) => {

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "python3 -m http.server 4173",
-    "build": "rm -rf dist && mkdir -p dist/src dist/catalogue && cp index.html dist/ && cp index.html dist/catalogue/ && cp src/main.js src/style.css dist/src/",
+    "build": "rm -rf dist && mkdir -p dist/src dist/catalogue && cp index.html dist/ && cp index.html dist/catalogue/ && cp src/main.js src/style.css dist/src/ && if [ -d assets ]; then cp -R assets dist/; fi",
     "preview": "python3 -m http.server 4173 -d dist"
   }
 }
