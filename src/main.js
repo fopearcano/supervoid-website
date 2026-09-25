@@ -74,9 +74,26 @@ const firstAvailableAsset = (paths, onLoad) => {
 };
 
 const isMobile = window.matchMedia('(max-width: 700px)').matches;
-const backgroundNames = isMobile
-  ? ['background-mobile.webp', 'background-mobile.png', 'background-mobile.jpg', 'mobile-background.webp', 'mobile-background.png', 'mobile-background.jpg']
-  : ['background-desktop.webp', 'background-desktop.png', 'background-desktop.jpg', 'desktop-background.webp', 'desktop-background.png', 'desktop-background.jpg'];
+const backgroundStem = isMobile ? 'mobile' : 'desktop';
+const backgroundBaseNames = [
+  `background-${backgroundStem}`,
+  `${backgroundStem}-background`,
+  `supervoid-background-${backgroundStem}`,
+  `supervoid-${backgroundStem}`,
+  `bg-${backgroundStem}`,
+  backgroundStem,
+  isMobile ? 'background_mobile' : 'background_desktop',
+  isMobile ? 'background mobile' : 'background desktop',
+  ...(!isMobile ? ['background-destop', 'destop-background', 'destop'] : [])
+];
+const imageExtensions = ['webp', 'avif', 'png', 'jpg', 'jpeg'];
+const backgroundNames = backgroundBaseNames.flatMap((name) =>
+  imageExtensions.flatMap((extension) => [
+    `${name}.${extension}`,
+    `${name}.${extension.toUpperCase()}`,
+    `${name.replace(/(^|[-_ ])\w/g, (letter) => letter.toUpperCase())}.${extension}`
+  ])
+);
 
 firstAvailableAsset(backgroundNames.map((name) => `/assets/${name}`), (url) => {
   document.querySelectorAll('.space-background').forEach((background) => {
@@ -88,7 +105,12 @@ firstAvailableAsset(backgroundNames.map((name) => `/assets/${name}`), (url) => {
 const logo = document.querySelector('.brand-logo');
 if (logo) {
   firstAvailableAsset(
-    ['/assets/supervoid-logo-01.webp', '/assets/supervoid-logo-01.png', '/assets/supervoid-logo-01.jpg'],
+    imageExtensions.flatMap((extension) => [
+      `/assets/supervoid-logo-01.${extension}`,
+      `/assets/Supervoid-logo-01.${extension}`,
+      `/assets/SUPERVOID-LOGO-01.${extension}`,
+      `/assets/supervoid_logo_01.${extension}`
+    ]),
     (url) => {
       logo.src = url;
       logo.parentElement.classList.add('has-uploaded-logo');
