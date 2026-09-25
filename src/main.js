@@ -1,8 +1,6 @@
 const icon = (name) => {
   const icons = {
     telegram: '<svg viewBox="0 0 24 24"><path d="m21 4-3 16-6-4.5L9 18l1-5 8-6-10 5-5-2z"/></svg>',
-    discord: '<svg viewBox="0 0 24 24"><path d="M18 5a15 15 0 0 0-3.7-1.2l-.5 1a13 13 0 0 0-3.6 0l-.5-1A15 15 0 0 0 6 5C3.6 8.5 3 12 3.3 15.5A15 15 0 0 0 8 18l1.2-1.6-1.7-.8.4-.3c3.2 1.5 6.6 1.5 9.8 0l.5.3-1.8.8 1.3 1.6a15 15 0 0 0 4.7-2.5C22.7 11.5 21 8 18 5ZM9 14c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2S10 14 9 14Zm6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2S16 14 15 14Z"/></svg>',
-    medium: '<svg viewBox="0 0 24 24"><path d="M4 5h16v14l-8-4-8 4V5Zm2 2v2h12V7H6Zm0 4v1h12v-1H6Z"/></svg>',
     instagram: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>'
   };
   return icons[name];
@@ -10,7 +8,7 @@ const icon = (name) => {
 
 const footer = `
   <footer class="footer">
-    <a href="/about">About</a><i></i><a href="/privacy">Privacy notice</a><i></i><span>Logosforge WB</span>
+    <a href="/about">About</a><i></i><a href="/privacy">Privacy notice</a>
   </footer>`;
 
 function home() {
@@ -32,8 +30,6 @@ function home() {
       </section>
       <nav class="socials" aria-label="Social media">
         <a href="#" aria-label="Telegram">${icon('telegram')}</a><b></b>
-        <a href="#" aria-label="Discord">${icon('discord')}</a><b></b>
-        <a href="#" aria-label="Medium">${icon('medium')}</a><b></b>
         <a href="#" aria-label="Instagram">${icon('instagram')}</a>
       </nav>
     </section>
