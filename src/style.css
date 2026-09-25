@@ -2,11 +2,13 @@
 
 :root {
   color-scheme: dark;
-  --black: #000;
-  --white: #f6f5f1;
-  --muted: #c2c2be;
-  --line: rgba(255, 255, 255, .58);
-  --signal: #8de6a3;
+  --black: #050a0b;
+  --surface: #081112;
+  --white: #f4fff8;
+  --muted: #c8d8d0;
+  --line: rgba(160, 255, 184, .58);
+  --signal: #7dff9c;
+  --ui-font: "Courier New", Courier, monospace;
   font-family: "EB Garamond", Georgia, serif;
   color: var(--white);
   background: var(--black);
@@ -36,29 +38,8 @@ button { color: inherit; }
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-  background: #000;
+  background: var(--black);
   overflow: hidden;
-}
-
-/* Light rings are CSS effects on the black canvas, not background artwork. */
-.home::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 7%;
-  width: min(78vw, 880px);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    transparent 0 47%,
-    rgba(255, 255, 255, .025) 48.5%,
-    rgba(255, 255, 255, .24) 49.8%,
-    rgba(255, 255, 255, .075) 50.5%,
-    transparent 54%);
-  filter: blur(1px);
-  pointer-events: none;
 }
 
 .hero {
@@ -73,27 +54,29 @@ button { color: inherit; }
   text-align: left;
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 18px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  color: var(--signal);
+  font: 400 15px/1.4 var(--ui-font);
 }
 .eyebrow span {
   display: block;
   width: 42px;
   margin-bottom: 17px;
-  border-top: 1px solid var(--white);
-  box-shadow: 0 0 10px rgba(255, 255, 255, .7);
+  border-top: 1px solid var(--signal);
+  box-shadow: 0 0 12px var(--signal);
 }
 .hero h1 {
   margin: 30px 0 0;
   text-transform: uppercase;
   letter-spacing: .14em;
   font: 400 clamp(48px, 6.1vw, 78px)/.95 "Libre Bodoni", Didot, "Times New Roman", serif;
-  text-shadow: 0 0 24px rgba(255, 255, 255, .26);
+  text-shadow: 0 0 2px rgba(255, 255, 255, .75), 0 0 17px rgba(125, 255, 156, .48), 0 0 38px rgba(125, 255, 156, .2);
 }
 .edition {
   padding-right: 8px;
   text-align: right;
   letter-spacing: .14em;
   font: italic 400 clamp(30px, 3.8vw, 45px)/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  text-shadow: 0 0 13px rgba(125, 255, 156, .38);
 }
 .catalogue-link {
   display: flex;
@@ -102,33 +85,34 @@ button { color: inherit; }
   width: max-content;
   margin: 43px auto 37px;
   padding-bottom: 7px;
-  border-bottom: 1px solid var(--white);
+  border-bottom: 1px solid var(--signal);
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 15px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  font: 400 14px/1.2 var(--ui-font);
 }
 .catalogue-link span {
   width: 43px;
   margin-bottom: 20px;
-  border-top: 1px solid var(--white);
+  border-top: 1px solid var(--signal);
+  box-shadow: 0 0 12px rgba(125, 255, 156, .6);
 }
 .catalogue-link:hover,
-.catalogue-link:focus-visible { text-shadow: 0 0 11px #fff; }
+.catalogue-link:focus-visible { color: var(--signal); text-shadow: 0 0 12px rgba(125, 255, 156, .85); }
 
 .signup h2 {
   margin: 0 0 18px;
   color: var(--signal);
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 clamp(16px, 2vw, 21px)/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
-  text-shadow: 0 0 18px rgba(141, 230, 163, .3);
+  font: 400 clamp(15px, 1.8vw, 19px)/1.2 var(--ui-font);
+  text-shadow: 0 0 10px rgba(125, 255, 156, .72), 0 0 28px rgba(125, 255, 156, .35);
 }
 .signup form {
   display: flex;
   height: 60px;
-  border: 1px solid var(--white);
-  background: #000;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 22px rgba(255, 255, 255, .13);
+  border: 1px solid var(--signal);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px rgba(125, 255, 156, .1), 0 0 23px rgba(125, 255, 156, .19);
 }
 .signup input {
   min-width: 0;
@@ -145,14 +129,14 @@ button { color: inherit; }
 .signup button {
   width: 82px;
   border: 0;
-  border-left: 1px solid var(--white);
-  background: #000;
+  border-left: 1px solid var(--signal);
+  background: var(--surface);
   color: var(--white);
   cursor: pointer;
   font: 400 35px/1 "EB Garamond", Georgia, serif;
   transition: background .2s, color .2s, box-shadow .2s;
 }
-.signup button:not(:disabled):hover { background: var(--white); color: #000; }
+.signup button:not(:disabled):hover { background: var(--signal); color: var(--black); box-shadow: 0 0 20px rgba(125, 255, 156, .55); }
 .signup button:disabled { color: var(--white); cursor: default; }
 .form-message {
   margin: 10px 0 0;
@@ -178,7 +162,7 @@ button { color: inherit; }
   border-radius: 50%;
 }
 .socials a { transition: transform .2s, box-shadow .2s; }
-.socials a:hover { transform: translateY(-2px); box-shadow: 0 0 14px rgba(255, 255, 255, .45); }
+.socials a:hover { transform: translateY(-2px); border-color: var(--signal); box-shadow: 0 0 14px rgba(125, 255, 156, .55); }
 .socials svg { width: 100%; height: 100%; fill: #fff; stroke: #fff; stroke-width: 1.5; }
 .socials .instagram-icon { fill: none; }
 .socials .instagram-icon circle:last-child { fill: #fff; stroke: none; }
@@ -189,11 +173,13 @@ button { color: inherit; }
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  align-self: flex-end;
+  align-items: center;
+  align-self: center;
   gap: 13px;
+  width: 100%;
   margin-top: auto;
   padding: 42px clamp(24px, 5vw, 76px) 27px;
+  text-align: center;
 }
 .brand-mark {
   display: block;
@@ -205,19 +191,19 @@ button { color: inherit; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: invert(1) contrast(1.5);
+  filter: invert(1) contrast(1.5) drop-shadow(0 0 12px rgba(125, 255, 156, .42));
 }
 .footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 14px;
   text-transform: uppercase;
   letter-spacing: .13em;
-  font: 500 12px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  font: 400 12px/1.2 var(--ui-font);
 }
-.footer i { width: 24px; border-top: 1px solid var(--white); }
-.footer a:hover { text-shadow: 0 0 10px #fff; }
+.footer i { width: 24px; border-top: 1px solid var(--signal); }
+.footer a:hover { color: var(--signal); text-shadow: 0 0 12px rgba(125, 255, 156, .8); }
 
 .catalogue-page { min-height: 100svh; }
 .topbar {
@@ -231,7 +217,7 @@ button { color: inherit; }
   border-bottom: 1px solid var(--line);
   text-transform: uppercase;
   letter-spacing: .14em;
-  font: 500 12px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  font: 400 12px/1.2 var(--ui-font);
 }
 .wordmark {
   font: 400 28px/1 "Libre Bodoni", Didot, "Times New Roman", serif;
@@ -249,16 +235,17 @@ button { color: inherit; }
   margin: 0;
   text-transform: uppercase;
   letter-spacing: .21em;
-  font: 500 14px/1.3 "Libre Bodoni", Didot, "Times New Roman", serif;
+  color: var(--signal);
+  font: 400 13px/1.3 var(--ui-font);
 }
 .catalogue-intro h1 {
   margin: 16px 0 25px;
   text-transform: uppercase;
   letter-spacing: .12em;
   font: 400 clamp(52px, 8vw, 104px)/1 "Libre Bodoni", Didot, "Times New Roman", serif;
-  text-shadow: 0 0 27px rgba(255, 255, 255, .22);
+  text-shadow: 0 0 16px rgba(125, 255, 156, .42), 0 0 32px rgba(125, 255, 156, .18);
 }
-.rule { height: 1px; background: var(--white); box-shadow: 0 0 12px rgba(255, 255, 255, .6); }
+.rule { height: 1px; background: var(--signal); box-shadow: 0 0 12px rgba(125, 255, 156, .65); }
 .catalogue-note {
   max-width: 650px;
   margin: 26px 0 0;
@@ -288,8 +275,8 @@ button { color: inherit; }
   padding: 27px;
   overflow: hidden;
   border: 1px solid var(--white);
-  background: #000;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, .08), 0 0 24px rgba(255, 255, 255, .1);
+  background: var(--surface);
+  box-shadow: inset 0 0 20px rgba(125, 255, 156, .07), 0 0 24px rgba(125, 255, 156, .12);
   text-transform: uppercase;
   letter-spacing: .13em;
   font: 400 15px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
@@ -298,9 +285,9 @@ button { color: inherit; }
   content: "";
   position: absolute;
   inset: 19% 6%;
-  border: 1px solid rgba(255, 255, 255, .45);
+  border: 1px solid rgba(125, 255, 156, .55);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, .65), 0 0 35px rgba(255, 255, 255, .18), inset 0 0 20px rgba(255, 255, 255, .18);
+  box-shadow: 0 0 8px rgba(125, 255, 156, .65), 0 0 35px rgba(125, 255, 156, .18), inset 0 0 20px rgba(125, 255, 156, .18);
   transform: rotate(-22deg) scaleX(.7);
   pointer-events: none;
 }
@@ -310,9 +297,9 @@ button { color: inherit; }
   left: 29%;
   width: 42%;
   aspect-ratio: 1;
-  border: 1px solid rgba(255, 255, 255, .7);
+  border: 1px solid rgba(125, 255, 156, .78);
   border-radius: 50%;
-  box-shadow: 0 0 9px #fff, 0 0 31px rgba(255, 255, 255, .4), inset 0 0 15px rgba(255, 255, 255, .3);
+  box-shadow: 0 0 9px var(--signal), 0 0 31px rgba(125, 255, 156, .4), inset 0 0 15px rgba(125, 255, 156, .3);
   pointer-events: none;
 }
 .cover > * { position: relative; z-index: 1; }
@@ -324,7 +311,8 @@ button { color: inherit; }
   margin: 0;
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 13px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  color: var(--signal);
+  font: 400 12px/1.2 var(--ui-font);
 }
 .book-copy h2 {
   margin: 15px 0 20px;
@@ -335,10 +323,11 @@ button { color: inherit; }
   display: inline-block;
   margin-top: 22px;
   padding-bottom: 7px;
-  border-bottom: 1px solid var(--white);
+  border-bottom: 1px solid var(--signal);
   text-transform: uppercase;
   letter-spacing: .18em;
-  font: 500 13px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  color: var(--signal);
+  font: 400 12px/1.2 var(--ui-font);
 }
 
 .information-dialog {
@@ -348,9 +337,9 @@ button { color: inherit; }
   padding: 0;
   overflow: auto;
   border: 1px solid var(--white);
-  background: #050505;
+  background: var(--surface);
   color: var(--white);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 0 55px rgba(255, 255, 255, .2);
+  box-shadow: 0 0 0 1px rgba(125, 255, 156, .18), 0 0 55px rgba(125, 255, 156, .18);
 }
 .information-dialog::backdrop { background: rgba(0, 0, 0, .78); backdrop-filter: blur(5px); }
 .information-dialog[open] { animation: panel-arrive .25s ease-out; }
@@ -369,12 +358,13 @@ button { color: inherit; }
   cursor: pointer;
   font: 400 24px/1 "EB Garamond", Georgia, serif;
 }
-.dialog-close:hover { background: var(--white); color: #000; }
+.dialog-close:hover { background: var(--signal); color: var(--black); }
 .dialog-kicker {
   margin: 0 0 16px;
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 13px/1.2 "Libre Bodoni", Didot, "Times New Roman", serif;
+  color: var(--signal);
+  font: 400 12px/1.2 var(--ui-font);
 }
 .dialog-title {
   margin: 0 0 22px;
@@ -382,7 +372,7 @@ button { color: inherit; }
   letter-spacing: .08em;
   font: 400 clamp(36px, 6vw, 62px)/1 "Libre Bodoni", Didot, "Times New Roman", serif;
 }
-.dialog-rule { height: 1px; margin-bottom: 28px; background: var(--white); box-shadow: 0 0 12px rgba(255, 255, 255, .65); }
+.dialog-rule { height: 1px; margin-bottom: 28px; background: var(--signal); box-shadow: 0 0 12px rgba(125, 255, 156, .65); }
 .information-copy { color: var(--muted); font: 400 20px/1.55 "EB Garamond", Georgia, serif; }
 .information-copy p { margin: 0 0 22px; }
 .information-copy p:last-child { margin-bottom: 0; }
@@ -392,9 +382,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 @media (max-width: 700px) {
-  .home::before { top: 5%; width: 120vw; }
   .hero { width: calc(100% - 44px); padding-top: clamp(95px, 14svh, 130px); }
-  .eyebrow { font-size: 14px; }
+  .eyebrow { font-size: 12px; }
   .hero h1 { margin-top: 24px; font-size: clamp(40px, 10vw, 54px); letter-spacing: .09em; }
   .edition { font-size: 29px; letter-spacing: .1em; }
   .catalogue-link { margin: 34px auto 30px; }
