@@ -1,0 +1,10 @@
+{
+  "name": "supervoid-editions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/site.mjs dev",
+    "build": "node scripts/site.mjs build",
+    "preview": "node scripts/site.mjs preview"
+  }
+}
