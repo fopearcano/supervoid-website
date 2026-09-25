@@ -1,8 +1,8 @@
 # Supervoid Editions
 
 A responsive, static landing page and catalogue for Supervoid Editions.
-The site uses `assets/background.png`, `assets/background-mobile.png`, and
-`assets/supervoid-logo-01.png`. The `source_main*.png` files are design references
+The site uses a black CSS canvas and `assets/supervoid-logo-bw.png`. The uploaded
+backgrounds, colored logo, and `source_main*.png` files remain design references
 and are excluded from the deployable build.
 
 ## Local development
@@ -13,8 +13,8 @@ npm run dev
 
 Visit `http://localhost:4173`. Build the deployable static site with `npm run build`,
 then check it with `npm run preview`. The build creates entry points for `/`,
-`/catalogue`, `/about`, and `/privacy` for static hosting. Node.js 22 or later is
-required; no package installation is needed.
+`/catalogue`, `/about`, and `/privacy`. The latter two URLs open panels over the
+home page. Node.js 22 or later is required; no package installation is needed.
 
 ## Loops newsletter connection
 

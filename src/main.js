@@ -7,9 +7,14 @@ const icon = (name) => {
 };
 
 const footer = `
-  <footer class="footer">
-    <a href="/about">About</a><i aria-hidden="true"></i><a href="/privacy">Privacy notice</a>
-  </footer>`;
+  <div class="site-footer">
+    <div class="brand-mark has-uploaded-logo">
+      <img class="brand-logo" src="/assets/supervoid-logo-bw.png" alt="Supervoid Editions logo">
+    </div>
+    <footer class="footer">
+      <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy notice</a>
+    </footer>
+  </div>`;
 
 const safeSocialUrl = (value, hostname) => {
   if (typeof value !== 'string') return null;
@@ -38,30 +43,27 @@ const newsletterEndpoint = (() => {
 function home() {
   const telegram = safeSocialUrl(window.SUPERVOID_TELEGRAM_URL, 't.me');
   const instagram = safeSocialUrl(window.SUPERVOID_INSTAGRAM_URL, 'instagram.com');
+  const formDisabled = newsletterEndpoint ? '' : ' disabled';
   return `<main class="home">
-    <div class="space-background has-uploaded-background" aria-hidden="true"></div>
     <section class="hero">
       <div class="eyebrow"><span></span>Books for<br>Distant minds</div>
       <h1>Supervoid</h1>
       <div class="edition">/ editions</div>
       <a class="catalogue-link" href="/catalogue"><span></span>Catalogue</a>
       <section class="signup" aria-labelledby="signup-title">
-        <h2 id="signup-title">Join the transmissions</h2>
-        <form id="newsletter-form">
+        <h2 id="signup-title">Join the transmission</h2>
+        <form id="newsletter-form"${newsletterEndpoint ? '' : ' aria-label="Newsletter signup currently unavailable"'}>
           <label class="sr-only" for="email">Your email address</label>
-          <input id="email" type="email" name="email" placeholder="your email address" required autocomplete="email">
-          <button aria-label="Join the transmissions" type="submit">→</button>
+          <input id="email" type="email" name="email" required autocomplete="email"${formDisabled}>
+          <button aria-label="Join the transmission" type="submit"${formDisabled}>→</button>
         </form>
-        <p class="form-message" aria-live="polite"></p>
+        ${newsletterEndpoint ? '<p class="form-message" aria-live="polite"></p>' : ''}
       </section>
       <nav class="socials" aria-label="Social media">
         ${social('Telegram', telegram)}<b aria-hidden="true"></b>
         ${social('Instagram', instagram)}
       </nav>
     </section>
-    <div class="brand-mark has-uploaded-logo">
-      <img class="brand-logo" src="/assets/supervoid-logo-01.png" alt="Supervoid Editions logo">
-    </div>
     ${footer}
   </main>`;
 }
@@ -72,81 +74,165 @@ function topbar() {
 
 function catalogue() {
   return `<main class="catalogue-page">
-    <div class="space-background has-uploaded-background" aria-hidden="true"></div>
     ${topbar()}
-    <section class="catalogue-intro"><p>Books for distant minds</p><h1>Catalogue</h1><div class="rule"></div><p class="catalogue-note">A preview of publications in development. Titles and release dates will be announced here.</p></section>
-    <section class="books" aria-label="Supervoid catalogue">
-      <article class="book featured"><div class="cover"><span>Supervoid</span><strong>Transmission<br>001</strong><small>In development</small></div><div class="book-copy"><p>SV / 001</p><h2>First transmission</h2><p class="description">Our first publication is in development. Details will appear here when it is ready to be announced.</p><span class="book-status">Coming soon</span></div></article>
-      <article class="book coming"><div class="cover"><span>Supervoid</span><strong>Transmission<br>002</strong><small>To be announced</small></div><div class="book-copy"><p>SV / 002</p><h2>Further signals</h2><p class="description">Future publications will be revealed here.</p><span class="book-status">To be announced</span></div></article>
+    <section class="catalogue-intro" aria-labelledby="catalogue-title">
+      <p>Books for distant minds</p>
+      <h1 id="catalogue-title">Catalogue</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="catalogue-note">A space for the publications to come. Titles, covers, and release details will appear here as they are confirmed.</p>
+    </section>
+    <section class="books" aria-label="Forthcoming publications">
+      <article class="book featured">
+        <div class="cover" aria-label="Cover artwork pending">
+          <span>Supervoid / Editions</span>
+          <div class="cover-halo" aria-hidden="true"></div>
+          <strong>Cover<br>pending</strong>
+          <small>In development</small>
+        </div>
+        <div class="book-copy">
+          <p>Forthcoming</p>
+          <h2>In development</h2>
+          <p class="description">Our first publication is taking shape. Its title, artwork, and release date will be shared when they are ready.</p>
+          <span class="book-status">Details to follow</span>
+        </div>
+      </article>
     </section>
     ${footer}
   </main>`;
 }
 
-function informationPage(title, body) {
-  return `<main class="catalogue-page info-page">
-    <div class="space-background has-uploaded-background" aria-hidden="true"></div>
-    ${topbar()}
-    <section class="catalogue-intro"><p>Supervoid Editions</p><h1>${title}</h1><div class="rule"></div></section>
-    <div class="information-copy">${body}</div>
-    ${footer}
-  </main>`;
-}
-
-function about() {
-  return informationPage('About', `
-    <p>Supervoid Editions is a publishing project for books for distant minds. The catalogue offers a preview of publications in development.</p>
+function aboutContent() {
+  return `
+    <p>Supervoid Editions is a publishing project for books for distant minds. Its first publication is in development.</p>
     <p>More details will appear as titles are announced.</p>
-    <p><a href="/catalogue">Explore the catalogue <span aria-hidden="true">→</span></a></p>`);
+    <p><a href="/catalogue">Explore the catalogue <span aria-hidden="true">→</span></a></p>`;
 }
 
-function privacy() {
+function privacyContent() {
   const newsletterDetails = newsletterEndpoint
     ? '<p>If you subscribe to the newsletter, the email address you submit is sent to the configured mailing service to process your subscription. This website does not keep a separate copy of it.</p>'
-    : '<p>Newsletter sign-ups are currently unavailable. The form does not send or store an email address.</p>';
-  return informationPage('Privacy notice', `
+    : '<p>Newsletter signups are currently unavailable. The form does not send or store an email address.</p>';
+  return `
     <p>This website does not run analytics or advertising trackers, and it does not set cookies.</p>
     ${newsletterDetails}
-    <p>The site loads typefaces from Google Fonts. Your browser contacts Google when it requests those font files. The hosting provider may also process standard access logs needed to serve the website.</p>
-    ${newsletterEndpoint ? '' : '<p>This notice will be updated with the mailing provider and contact details before subscriptions open.</p>'}`);
+    <p>The site may load typefaces from Google Fonts. Your browser contacts Google when it requests those font files. The hosting provider may also process standard access logs needed to serve the website.</p>
+    ${newsletterEndpoint ? '' : '<p>This notice will be updated with the mailing provider and contact details before subscriptions open.</p>'}`;
 }
 
-const path = window.location.pathname.replace(/\/+$/, '') || '/';
-const pages = { '/': home, '/catalogue': catalogue, '/about': about, '/privacy': privacy };
-document.querySelector('#app').innerHTML = (pages[path] || home)();
-const pageTitles = { '/catalogue': 'Catalogue', '/about': 'About', '/privacy': 'Privacy notice' };
-if (pageTitles[path]) document.title = `${pageTitles[path]} | Supervoid Editions`;
+const panelContent = {
+  about: { title: 'About', body: aboutContent },
+  privacy: { title: 'Privacy notice', body: privacyContent }
+};
+
+const dialogMarkup = `
+  <dialog id="information-dialog" class="information-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" aria-label="Close panel">×</button>
+      <p class="dialog-kicker">Supervoid Editions</p>
+      <h2 id="dialog-title" class="dialog-title"></h2>
+      <div class="dialog-rule" aria-hidden="true"></div>
+      <div class="information-copy" id="dialog-copy"></div>
+    </div>
+  </dialog>`;
+
+const currentPath = () => window.location.pathname.replace(/\/+$/, '') || '/';
+const initialPath = currentPath();
+const app = document.querySelector('#app');
+app.innerHTML = (initialPath === '/catalogue' ? catalogue : home)() + dialogMarkup;
+
+const dialog = document.querySelector('#information-dialog');
+const dialogTitle = dialog.querySelector('#dialog-title');
+const dialogCopy = dialog.querySelector('#dialog-copy');
+let modalReturnPath = initialPath === '/catalogue' ? '/catalogue' : '/';
+
+function setPageTitle(path) {
+  const title = path === '/catalogue' ? 'Catalogue'
+    : path === '/about' ? 'About'
+    : path === '/privacy' ? 'Privacy notice'
+    : null;
+  document.title = title ? `${title} | Supervoid Editions` : 'Supervoid Editions';
+}
+
+function showPanel(name, pushHistory) {
+  const panel = panelContent[name];
+  if (!panel) return;
+  const panelPath = `/${name}`;
+  if (pushHistory) {
+    modalReturnPath = currentPath();
+    window.history.pushState({ infoPanel: panelPath, returnPath: modalReturnPath }, '', panelPath);
+  }
+  dialogTitle.textContent = panel.title;
+  dialogCopy.innerHTML = panel.body();
+  setPageTitle(panelPath);
+  if (!dialog.open) dialog.showModal();
+}
+
+document.addEventListener('click', (event) => {
+  const trigger = event.target.closest('[data-panel]');
+  if (!trigger || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  showPanel(trigger.dataset.panel, true);
+});
+
+dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', (event) => {
+  const rect = dialog.getBoundingClientRect();
+  const outside = event.clientX < rect.left || event.clientX > rect.right
+    || event.clientY < rect.top || event.clientY > rect.bottom;
+  if (outside) dialog.close();
+});
+
+dialog.addEventListener('close', () => {
+  const path = currentPath();
+  if (path === '/about' || path === '/privacy') {
+    if (window.history.state?.infoPanel === path) window.history.back();
+    else window.history.replaceState(null, '', modalReturnPath);
+  }
+  setPageTitle(currentPath());
+});
+
+window.addEventListener('popstate', () => {
+  const path = currentPath();
+  if (path === '/about' || path === '/privacy') {
+    modalReturnPath = window.history.state?.returnPath || (initialPath === '/catalogue' ? '/catalogue' : '/');
+    showPanel(path.slice(1), false);
+  } else if (dialog.open) {
+    dialog.close();
+  }
+  setPageTitle(path);
+});
+
+if (initialPath === '/about' || initialPath === '/privacy') {
+  // A direct panel URL always has the home page beneath it and closes to /.
+  window.history.replaceState(null, '', window.location.href);
+  showPanel(initialPath.slice(1), false);
+} else {
+  setPageTitle(initialPath);
+}
 
 const form = document.querySelector('#newsletter-form');
-if (form) {
+if (form && newsletterEndpoint) {
   const message = form.nextElementSibling;
   const button = form.querySelector('button');
-
-  if (!newsletterEndpoint) {
-    form.querySelector('input').disabled = true;
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = new FormData(form).get('email');
     button.disabled = true;
-    message.textContent = 'Newsletter sign-ups will open soon.';
-  } else {
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const email = new FormData(form).get('email');
-      button.disabled = true;
-      message.textContent = 'Transmitting…';
+    message.textContent = 'Transmitting…';
 
-      try {
-        const response = await fetch(newsletterEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
-        if (!response.ok) throw new Error('Transmission failed');
-        message.textContent = 'Signal received. Welcome to the void.';
-        form.reset();
-      } catch {
-        message.textContent = 'The signal was lost. Please try again.';
-      } finally {
-        button.disabled = false;
-      }
-    });
-  }
+    try {
+      const response = await fetch(newsletterEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (!response.ok) throw new Error('Transmission failed');
+      message.textContent = 'Signal received. Welcome to the void.';
+      form.reset();
+    } catch {
+      message.textContent = 'The signal was lost. Please try again.';
+    } finally {
+      button.disabled = false;
+    }
+  });
 }
