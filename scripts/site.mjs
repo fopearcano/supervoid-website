@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = join(projectRoot, 'dist');
 const routes = new Set(['/catalogue', '/about', '/privacy']);
-const runtimeAssets = ['background.png', 'background-mobile.png', 'supervoid-logo-01.png'];
+const runtimeAssets = ['supervoid-logo-bw.png'];
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
