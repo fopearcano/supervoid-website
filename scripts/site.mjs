@@ -68,7 +68,7 @@ async function serve(preview) {
   }
 
   const port = Number(process.env.PORT ?? 4173);
-  const host = process.env.HOST ?? 'localhost';
+  const host = process.env.HOST ?? '0.0.0.0';
   if (!Number.isInteger(port) || port < 0 || port > 65535) {
     throw new Error('PORT must be a number between 0 and 65535.');
   }
