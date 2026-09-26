@@ -1,8 +1,9 @@
 # Supervoid Editions
 
 A responsive, static landing page and catalogue for Supervoid Editions.
-The site uses a deep blue-black CSS canvas and `assets/supervoid-logo-bw.png`. The uploaded
-backgrounds, colored logo, and `source_main*.png` files remain design references
+The site uses a deep blue-black CSS canvas and the transparent
+`assets/supervoid-logo-bw-2-transparent.png` mark. The uploaded backgrounds,
+earlier logos, and `source_main*.png` files remain design references
 and are excluded from the deployable build.
 
 ## Local development
