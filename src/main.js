@@ -9,7 +9,7 @@ const icon = (name) => {
 const footer = `
   <div class="site-footer">
     <div class="brand-mark has-uploaded-logo">
-      <img class="brand-logo" src="/assets/supervoid-logo-bw.png" alt="Supervoid Editions logo">
+      <img class="brand-logo" src="/assets/supervoid-logo-bw-2-transparent.png" alt="Supervoid Editions logo">
     </div>
     <footer class="footer">
       <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy notice</a>
@@ -51,11 +51,11 @@ function home() {
       <div class="edition">/ editions</div>
       <a class="catalogue-link" href="/catalogue"><span></span>Catalogue</a>
       <section class="signup" aria-labelledby="signup-title">
-        <h2 id="signup-title">Join the transmission</h2>
+        <h2 id="signup-title">Join the transmissions</h2>
         <form id="newsletter-form"${newsletterEndpoint ? '' : ' aria-label="Newsletter signup currently unavailable"'}>
           <label class="sr-only" for="email">Your email address</label>
-          <input id="email" type="email" name="email" required autocomplete="email"${formDisabled}>
-          <button aria-label="Join the transmission" type="submit"${formDisabled}>→</button>
+          <input id="email" type="email" name="email" placeholder="your email here, please" required autocomplete="email"${formDisabled}>
+          <button aria-label="Join the transmissions" type="submit"${formDisabled}>→</button>
         </form>
         ${newsletterEndpoint ? '<p class="form-message" aria-live="polite"></p>' : ''}
       </section>
