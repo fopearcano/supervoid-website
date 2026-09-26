@@ -46,7 +46,7 @@ button { color: inherit; }
   z-index: 1;
   width: min(552px, calc(100% - 48px));
   margin: 0 auto;
-  padding-top: clamp(96px, 14.7svh, 193px);
+  padding-top: clamp(24px, 4svh, 42px);
   text-align: center;
 }
 .eyebrow {
@@ -63,12 +63,18 @@ button { color: inherit; }
   box-shadow: 0 0 12px var(--signal);
 }
 .hero h1 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
   margin: 28px 0 0;
+  padding-right: 8px;
   text-transform: uppercase;
-  letter-spacing: .14em;
-  font: 400 clamp(44px, 5.6vw, 72px)/.95 "Cormorant Garamond", Garamond, Georgia, serif;
+  letter-spacing: 0;
+  font: 400 clamp(60px, 6.2vw, 80px)/.9 "Cormorant Garamond", Garamond, Georgia, serif;
   text-shadow: 0 0 2px rgba(255, 255, 255, .75), 0 0 17px rgba(255, 255, 255, .34), 0 0 38px rgba(255, 255, 255, .14);
 }
+.hero h1 span { display: block; }
 .edition {
   padding-right: 8px;
   text-align: right;
@@ -81,7 +87,7 @@ button { color: inherit; }
   flex-direction: column;
   align-items: center;
   width: max-content;
-  margin: 60px auto 54px;
+  margin: 57px auto;
   padding-bottom: 7px;
   border-bottom: 1px solid var(--signal);
   text-transform: uppercase;
@@ -377,11 +383,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 @media (max-width: 700px) {
-  .hero { width: calc(100% - 44px); padding-top: clamp(87px, 12.9svh, 120px); }
+  .hero { width: calc(100% - 44px); padding-top: clamp(24px, 4svh, 36px); }
   .eyebrow { font-size: 13px; }
-  .hero h1 { margin-top: 22px; font-size: clamp(37px, 9.2vw, 50px); letter-spacing: .09em; }
+  .hero h1 { margin-top: 22px; font-size: clamp(43px, 13.5vw, 92px); }
   .edition { font-size: 27px; letter-spacing: .1em; }
-  .catalogue-link { margin: 51px auto 48px; }
+  .catalogue-link { margin: 50px auto; }
   .signup h2 { font-size: 14px; letter-spacing: .15em; }
   .signup form { height: 51px; }
   .signup input { padding: 0 13px; font-size: 17px; }
@@ -409,9 +415,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 }
 
 @media (max-width: 360px) {
-  .hero h1 { font-size: 34px; letter-spacing: .075em; }
   .edition { font-size: 25px; }
-  .catalogue-link { margin: 43px auto 40px; }
+  .catalogue-link { margin: 44px auto; }
   .signup h2 { font-size: 14px; }
   .signup input { font-size: 16px; }
   .home .site-footer { padding-top: 56px; }
