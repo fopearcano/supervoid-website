@@ -55,7 +55,12 @@ function home() {
         <form id="newsletter-form"${newsletterEndpoint ? '' : ' aria-label="Newsletter signup currently unavailable"'}>
           <label class="sr-only" for="email">Your email address</label>
           <input id="email" type="email" name="email" placeholder="your email here, please" required autocomplete="email"${formDisabled}>
-          <button aria-label="Join the transmissions" type="submit"${formDisabled}>→</button>
+          <button aria-label="Join the transmissions" type="submit"${formDisabled}>
+            <svg class="spiral-submit" aria-hidden="true" focusable="false" viewBox="0 0 44 44">
+              <path d="M5 22c0-11 8-17.5 18.5-16.5C34 6.5 39.3 16.6 36.1 26 33.2 34.5 24.4 39 16.2 35.8 9 33 6.1 25.4 9.1 18.8c2.6-5.7 9-8 14.3-5.5 4.6 2.2 6.2 7.6 3.7 11.7-2.1 3.5-6.6 4.6-9.6 2.2-2.5-2-2.7-5.7-.6-7.9 1.7-1.8 4.5-1.8 6.2-.2"/>
+              <path d="M18.2 16.8 23.1 19.1 20.8 24.1"/>
+            </svg>
+          </button>
         </form>
         ${newsletterEndpoint ? '<p class="form-message" aria-live="polite"></p>' : ''}
       </section>
