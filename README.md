@@ -12,7 +12,10 @@ and are excluded from the deployable build.
 npm run dev
 ```
 
-Visit `http://localhost:4173`. Build the deployable static site with `npm run build`,
+Visit `http://localhost:4173` on this computer. Both development and preview
+servers listen on the local network by default, so another device on the same
+network can visit `http://<this-computer's-LAN-IP>:4173`. Set `HOST` or `PORT`
+to override either value. Build the deployable static site with `npm run build`,
 then check it with `npm run preview`. The build creates entry points for `/`,
 `/catalogue`, `/about`, and `/privacy`. The latter two URLs open panels over the
 home page. Node.js 22 or later is required; no package installation is needed.
