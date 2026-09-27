@@ -47,7 +47,10 @@ function home() {
   return `<main class="home">
     <section class="hero">
       <div class="eyebrow"><span></span>Books for<br>Distant minds</div>
-      <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
+      <div class="title-lockup">
+        <p class="mental-note">I've got a mental</p>
+        <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
+      </div>
       <div class="edition">/ editions</div>
       <a class="catalogue-link" href="/catalogue"><span></span>Catalogue</a>
       <section class="signup" aria-labelledby="signup-title">
@@ -69,6 +72,7 @@ function home() {
         ${social('Instagram', instagram)}
       </nav>
     </section>
+    <p class="read-or-die">READ OR DIE.</p>
     ${footer}
   </main>`;
 }
