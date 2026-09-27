@@ -12,7 +12,7 @@ const footer = `
       <img class="brand-logo" src="/assets/supervoid-logo-bw-2-transparent.png" alt="Supervoid Editions logo">
     </div>
     <footer class="footer">
-      <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy notice</a>
+      <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy</a>
     </footer>
   </div>`;
 
@@ -31,22 +31,33 @@ const social = (name, url) => url
   ? `<a href="${url}" aria-label="${name}" rel="noopener noreferrer" target="_blank">${icon(name.toLowerCase())}</a>`
   : `<span class="social-icon" role="img" aria-label="${name} — link coming soon">${icon(name.toLowerCase())}</span>`;
 
+const defaultSocialUrls = {
+  telegram: 'https://t.me/supervoid_editions',
+  instagram: 'https://www.instagram.com/supervoid.editions/'
+};
+
 const newsletterEndpoint = (() => {
   try {
     const url = new URL(window.SUPERVOID_LOOPS_FORM_URL);
-    return url.protocol === 'https:' ? url.href : null;
+    const isLoopsForm = url.protocol === 'https:'
+      && url.hostname === 'app.loops.so'
+      && url.pathname.startsWith('/api/newsletter-form/');
+    return isLoopsForm ? url.href : null;
   } catch {
     return null;
   }
 })();
 
 function home() {
-  const telegram = safeSocialUrl(window.SUPERVOID_TELEGRAM_URL, 't.me');
-  const instagram = safeSocialUrl(window.SUPERVOID_INSTAGRAM_URL, 'instagram.com');
+  const telegram = safeSocialUrl(window.SUPERVOID_TELEGRAM_URL || defaultSocialUrls.telegram, 't.me');
+  const instagram = safeSocialUrl(window.SUPERVOID_INSTAGRAM_URL || defaultSocialUrls.instagram, 'instagram.com');
   const formDisabled = newsletterEndpoint ? '' : ' disabled';
   return `<main class="home">
     <section class="hero">
-      <div class="eyebrow"><span></span>Books for<br>Distant minds</div>
+      <div class="hero-corners">
+        <div class="eyebrow"><span></span>Books for<br>Distant minds</div>
+        <p class="corner-motto">Read or die</p>
+      </div>
       <div class="title-lockup">
         <p class="mental-note">I've got a mental</p>
         <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
@@ -55,7 +66,7 @@ function home() {
       <a class="catalogue-link" href="/catalogue"><span></span>Catalogue</a>
       <section class="signup" aria-labelledby="signup-title">
         <h2 id="signup-title">Join the transmissions</h2>
-        <form id="newsletter-form"${newsletterEndpoint ? '' : ' aria-label="Newsletter signup currently unavailable"'}>
+        <form id="newsletter-form"${newsletterEndpoint ? ` action="${newsletterEndpoint}" method="post"` : ' aria-label="Newsletter signup currently unavailable"'}>
           <label class="sr-only" for="email">Your email address</label>
           <input id="email" type="email" name="email" placeholder="your email here, please" required autocomplete="email"${formDisabled}>
           <button aria-label="Join the transmissions" type="submit"${formDisabled}>
@@ -72,7 +83,7 @@ function home() {
         ${social('Instagram', instagram)}
       </nav>
     </section>
-    <p class="read-or-die">READ OR DIE.</p>
+    <p class="depth-motto">Black has depth</p>
     ${footer}
   </main>`;
 }
@@ -119,7 +130,7 @@ function aboutContent() {
 
 function privacyContent() {
   const newsletterDetails = newsletterEndpoint
-    ? '<p>If you subscribe to the newsletter, the email address you submit is sent to the configured mailing service to process your subscription. This website does not keep a separate copy of it.</p>'
+    ? '<p>If you subscribe to the newsletter, the email address you submit is sent to Loops to process your subscription. This website does not keep a separate copy of it.</p>'
     : '<p>Newsletter signups are currently unavailable. The form does not send or store an email address.</p>';
   return `
     <p>This website does not run analytics or advertising trackers, and it does not set cookies.</p>
@@ -130,7 +141,7 @@ function privacyContent() {
 
 const panelContent = {
   about: { title: 'About', body: aboutContent },
-  privacy: { title: 'Privacy notice', body: privacyContent }
+  privacy: { title: 'Privacy', body: privacyContent }
 };
 
 const dialogMarkup = `
@@ -157,7 +168,7 @@ let modalReturnPath = initialPath === '/catalogue' ? '/catalogue' : '/';
 function setPageTitle(path) {
   const title = path === '/catalogue' ? 'Catalogue'
     : path === '/about' ? 'About'
-    : path === '/privacy' ? 'Privacy notice'
+    : path === '/privacy' ? 'Privacy'
     : null;
   document.title = title ? `${title} | Supervoid Editions` : 'Supervoid Editions';
 }
@@ -232,10 +243,15 @@ if (form && newsletterEndpoint) {
     try {
       const response = await fetch(newsletterEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ email }).toString()
       });
-      if (!response.ok) throw new Error('Transmission failed');
+      const result = await response.json().catch(() => null);
+      if (response.status === 429) {
+        message.textContent = 'Too many signals. Please try again in a little while.';
+        return;
+      }
+      if (!response.ok || result?.success !== true) throw new Error('Transmission failed');
       message.textContent = 'Signal received. Welcome to the void.';
       form.reset();
     } catch {

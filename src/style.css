@@ -49,7 +49,14 @@ button { color: inherit; }
   padding-top: clamp(24px, 4svh, 42px);
   text-align: center;
 }
-.eyebrow {
+.hero-corners {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+.eyebrow, .corner-motto {
   text-align: left;
   text-transform: uppercase;
   letter-spacing: .2em;
@@ -59,6 +66,19 @@ button { color: inherit; }
   display: block;
   width: 42px;
   margin-bottom: 17px;
+  border-top: 1px solid var(--signal);
+  box-shadow: 0 0 12px var(--signal);
+}
+.corner-motto {
+  margin: 0;
+  white-space: nowrap;
+  text-align: right;
+}
+.corner-motto::before {
+  content: "";
+  display: block;
+  width: 42px;
+  margin: 0 0 17px auto;
   border-top: 1px solid var(--signal);
   box-shadow: 0 0 12px var(--signal);
 }
@@ -207,7 +227,7 @@ button { color: inherit; }
 .socials .instagram-icon circle:last-child { fill: #fff; stroke: none; }
 .socials b { height: 30px; border-left: 1px solid var(--line); }
 
-.read-or-die {
+.depth-motto {
   position: relative;
   z-index: 1;
   display: grid;
@@ -435,7 +455,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (max-width: 700px) {
   .hero { width: calc(100% - 44px); padding-top: clamp(24px, 4svh, 36px); }
-  .eyebrow { font-size: 13px; }
+  .hero-corners { gap: 16px; }
+  .eyebrow, .corner-motto { font-size: 13px; }
   .title-lockup { margin-top: 22px; }
   .hero h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
   .mental-note { font-size: 15px; }
