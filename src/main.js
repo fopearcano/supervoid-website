@@ -83,30 +83,36 @@ function home() {
 }
 
 function topbar() {
-  return '<header class="topbar"><a href="/" class="wordmark">Supervoid <em>/ editions</em></a><a href="/">Return to the void</a></header>';
+  return `<header class="topbar">
+    <a href="/" class="wordmark">Supervoid <em>/ editions</em></a>
+    <a href="/" class="back-link" aria-label="Return to home">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 56 28">
+        <path d="M50 14.8c-10.5-.8-21.4-1.5-31.8-.2-4.2.5-7.8 1.4-11.4 3.1"/>
+        <path d="M15.6 8.1c-2.8 3.7-5.6 6.9-9.2 9.8 4.2 1.1 8.2 3.1 11.6 5.8"/>
+      </svg>
+    </a>
+  </header>`;
 }
 
 function catalogue() {
   return `<main class="catalogue-page">
     ${topbar()}
     <section class="catalogue-intro" aria-labelledby="catalogue-title">
-      <p>Books for distant minds</p>
+      <p>Read or die</p>
       <h1 id="catalogue-title">Catalogue</h1>
       <div class="rule" aria-hidden="true"></div>
-      <p class="catalogue-note">A space for the publications to come. Titles, covers, and release details will appear here as they are confirmed.</p>
     </section>
     <section class="books" aria-label="Forthcoming publications">
-      <article class="book featured">
-        <div class="cover" aria-label="Cover artwork pending">
+      <article class="book featured" aria-labelledby="book-title">
+        <div class="cover">
           <span>Supervoid / Editions</span>
           <div class="cover-halo" aria-hidden="true"></div>
-          <strong>Cover<br>pending</strong>
-          <small>In development</small>
+          <h2 id="book-title">That Bloody<br>Time Machine</h2>
+          <small>Forthcoming</small>
         </div>
         <div class="book-copy">
           <p>Forthcoming</p>
-          <h2>In development</h2>
-          <p class="description">Our first publication is taking shape. Its title, artwork, and release date will be shared when they are ready.</p>
+          <p class="description">First publication is taking shape. Its release date will be shared soon... as soon as an artist wakes up from his/her dream... stay tuned!</p>
           <span class="book-status">Details to follow</span>
         </div>
       </article>
