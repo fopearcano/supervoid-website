@@ -107,7 +107,11 @@ function catalogue() {
         <div class="cover">
           <span>Supervoid / Editions</span>
           <div class="cover-halo" aria-hidden="true"></div>
-          <h2 id="book-title">That Bloody<br>Time Machine</h2>
+          <h2 id="book-title" class="cover-title" aria-label="QTDM, Quella Dannatissima Macchina del Tempo, or That Bloody Time Machine">
+            <span class="cover-title-italian" lang="it"><span class="cover-title-abbr">QTDM</span><span class="cover-title-long">Quella Dannatissima<br>Macchina del Tempo</span></span>
+            <span class="cover-title-or">or</span>
+            <span class="cover-title-english" lang="en">That Bloody<br>Time Machine</span>
+          </h2>
           <small>Forthcoming</small>
         </div>
         <div class="book-copy">
