@@ -49,14 +49,7 @@ button { color: inherit; }
   padding-top: clamp(24px, 4svh, 42px);
   text-align: center;
 }
-.hero-corners {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-  width: 100%;
-}
-.eyebrow, .corner-motto {
+.eyebrow {
   text-align: left;
   text-transform: uppercase;
   letter-spacing: .2em;
@@ -69,43 +62,12 @@ button { color: inherit; }
   border-top: 1px solid var(--signal);
   box-shadow: 0 0 12px var(--signal);
 }
-.corner-motto {
-  margin: 0;
-  white-space: nowrap;
-  text-align: right;
-}
-.corner-motto::before {
-  content: "";
-  display: block;
-  width: 42px;
-  margin: 0 0 17px auto;
-  border-top: 1px solid var(--signal);
-  box-shadow: 0 0 12px var(--signal);
-}
-.title-lockup {
-  position: relative;
-  width: 100%;
-  margin-top: 28px;
-}
-.mental-note {
-  position: absolute;
-  z-index: 2;
-  top: -11px;
-  left: clamp(8px, 3.2vw, 25px);
-  margin: 0;
-  white-space: nowrap;
-  letter-spacing: .04em;
-  font: italic 400 clamp(15px, 1.7vw, 19px)/1 "Cormorant Garamond", Garamond, Georgia, serif;
-  text-shadow: 0 0 9px rgba(255, 255, 255, .28);
-  transform: rotate(-2deg);
-  transform-origin: left bottom;
-}
 .hero h1 {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-  margin: 0;
+  margin: 28px 0 0;
   padding-right: 8px;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -455,11 +417,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (max-width: 700px) {
   .hero { width: calc(100% - 44px); padding-top: clamp(24px, 4svh, 36px); }
-  .hero-corners { gap: 16px; }
-  .eyebrow, .corner-motto { font-size: 13px; }
-  .title-lockup { margin-top: 22px; }
-  .hero h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
-  .mental-note { font-size: 15px; }
+  .eyebrow { font-size: 13px; }
+  .hero h1 { margin-top: 22px; font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
   .edition { font-size: 27px; letter-spacing: .1em; }
   .catalogue-link { margin: 90px auto 70px; }
   .signup h2 { font-size: 14px; letter-spacing: .15em; }
