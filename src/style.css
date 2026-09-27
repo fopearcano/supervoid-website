@@ -88,17 +88,11 @@ button { color: inherit; }
   align-items: center;
   width: max-content;
   margin: 97px auto 77px;
-  padding-bottom: 7px;
+  padding: 21px 0 7px;
   border-bottom: 1px solid var(--signal);
   text-transform: uppercase;
   letter-spacing: .2em;
   font: 500 14px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
-}
-.catalogue-link span {
-  width: 43px;
-  margin-bottom: 20px;
-  border-top: 1px solid var(--signal);
-  box-shadow: 0 0 12px rgba(125, 255, 156, .6);
 }
 .catalogue-link:hover,
 .catalogue-link:focus-visible { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .85); }
