@@ -368,16 +368,6 @@ button { color: inherit; }
   font: 500 12px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
 .description { max-width: 460px; color: var(--muted); font: 400 18px/1.5 "Cormorant Garamond", Garamond, Georgia, serif; }
-.book-status {
-  display: inline-block;
-  margin-top: 20px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid var(--signal);
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  font: 500 12px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
-}
-
 .information-dialog {
   width: min(644px, calc(100vw - 32px));
   max-width: none;

@@ -113,7 +113,6 @@ function catalogue() {
         <div class="book-copy">
           <p>Forthcoming</p>
           <p class="description">First publication is taking shape. Its release date will be shared soon... as soon as an artist wakes up from his/her dream... stay tuned!</p>
-          <span class="book-status">Details to follow</span>
         </div>
       </article>
     </section>
