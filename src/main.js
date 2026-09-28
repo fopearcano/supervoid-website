@@ -127,20 +127,25 @@ function catalogue() {
 
 function aboutContent() {
   return `
-    <p>Supervoid Editions is a publishing project for books for distant minds. Its first publication is in development.</p>
-    <p>More details will appear as titles are announced.</p>
-    <p><a href="/catalogue">Explore the catalogue <span aria-hidden="true">→</span></a></p>`;
+    <p>Supervoid Editions is a publishing project for books and graphic novels.</p>
+    <p>More will be announced soon.</p>`;
 }
 
 function privacyContent() {
-  const newsletterDetails = newsletterEndpoint
-    ? '<p>If you subscribe to the newsletter, the email address you submit is sent to Loops to process your subscription. This website does not keep a separate copy of it.</p>'
-    : '<p>Newsletter signups are currently unavailable. The form does not send or store an email address.</p>';
   return `
-    <p>This website does not run analytics or advertising trackers, and it does not set cookies.</p>
-    ${newsletterDetails}
-    <p>The site may load typefaces from Google Fonts. Your browser contacts Google when it requests those font files. The hosting provider may also process standard access logs needed to serve the website.</p>
-    ${newsletterEndpoint ? '' : '<p>This notice will be updated with the mailing provider and contact details before subscriptions open.</p>'}`;
+    <p><strong>Last updated: 28 September 2026</strong></p>
+    <h3>Controller and contact</h3>
+    <p>Supervoid Editions is the data controller for personal data collected through this website. Privacy requests may be sent through the official <a href="https://t.me/supervoid_editions" rel="noopener noreferrer" target="_blank">Telegram</a> or <a href="https://www.instagram.com/supervoid.editions/" rel="noopener noreferrer" target="_blank">Instagram</a> account.</p>
+    <h3>Newsletter</h3>
+    <p>When you join the newsletter, Supervoid Editions collects the email address you provide in order to send news about publications, forthcoming titles and occasional project updates. Processing is based on your consent under Article 6(1)(a) of the GDPR. Providing an email address is optional, and it is not sold.</p>
+    <p>Your email address is sent directly to <a href="https://loops.so/privacy" rel="noopener noreferrer" target="_blank">Loops</a> (Astrodon Corporation), which processes subscriber data on behalf of Supervoid Editions for contact management and email delivery. Loops is based in the United States and describes its international-transfer safeguards in its <a href="https://loops.so/dpa" rel="noopener noreferrer" target="_blank">Data Processing Agreement</a>.</p>
+    <h3>Retention and withdrawal</h3>
+    <p>Your email address is retained while you remain subscribed. You may withdraw consent at any time through the unsubscribe link in a newsletter or by contacting Supervoid Editions. After withdrawal, the address will be deleted or retained only as necessary to record and respect the opt-out or meet a legal obligation. Withdrawal does not affect processing carried out before it. Technical request data is retained by the relevant service providers under their own policies.</p>
+    <h3>Website data</h3>
+    <p>This website does not use analytics or advertising trackers and does not set its own cookies. It is hosted through <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection" rel="noopener noreferrer" target="_blank">GitHub Pages</a>, which logs visitors’ IP addresses for security. The site also requests typefaces from <a href="https://developers.google.com/fonts/faq/privacy" rel="noopener noreferrer" target="_blank">Google Fonts</a>, so your browser sends technical request data, including your IP address, to Google. This processing supports the operation, security and presentation of the site and is based on the legitimate interests of Supervoid Editions under Article 6(1)(f) of the GDPR.</p>
+    <h3>Your rights</h3>
+    <p>Subject to the conditions of applicable law, you may request access to, rectification or erasure of your personal data, restriction of processing, data portability, or object to processing. You may withdraw consent at any time. No solely automated decisions or profiling are carried out by Supervoid Editions.</p>
+    <p>You may also lodge a complaint with the <a href="https://www.garanteprivacy.it/diritti/come-agire-per-tutelare-i-tuoi-dati-personali/reclamo" rel="noopener noreferrer" target="_blank">Garante per la protezione dei dati personali</a> or another competent supervisory authority.</p>`;
 }
 
 const panelContent = {

@@ -451,6 +451,13 @@ button { color: inherit; }
 }
 .dialog-rule { height: 1px; margin-bottom: 26px; background: var(--signal); box-shadow: 0 0 12px rgba(125, 255, 156, .65); }
 .information-copy { color: var(--muted); font: 400 18px/1.55 "Cormorant Garamond", Garamond, Georgia, serif; }
+.information-copy h3 {
+  margin: 28px 0 8px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font: 700 15px/1.25 "Cormorant Garamond", Garamond, Georgia, serif;
+}
 .information-copy p { margin: 0 0 20px; }
 .information-copy p:last-child { margin-bottom: 0; }
 .information-copy a { border-bottom: 1px solid var(--white); color: var(--white); }
