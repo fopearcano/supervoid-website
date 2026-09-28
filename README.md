@@ -33,3 +33,16 @@ The social icons link to `https://t.me/supervoid_editions` and
 `https://www.instagram.com/supervoid.editions/` by default. Set
 `window.SUPERVOID_TELEGRAM_URL` or `window.SUPERVOID_INSTAGRAM_URL` before
 `src/main.js` loads to override either HTTPS profile URL.
+
+## Public deployment
+
+GitHub Pages publishes the tracked `docs/` directory from `main` at
+`https://supervoideditions.com`. Regenerate that directory after a site change:
+
+```bash
+npm run build:pages
+```
+
+The Pages build includes the custom-domain `CNAME` and disables Jekyll so the
+static output is served unchanged. Commit the regenerated `docs/` files with
+the corresponding source changes.
