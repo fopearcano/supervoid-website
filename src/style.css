@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Gloock&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Gloock&display=swap');
 
 :root {
   color-scheme: dark;
@@ -55,25 +55,30 @@ button { color: inherit; }
   margin-left: 50%;
   transform: translateX(-50%);
 }
-.eyebrow {
-  text-align: left;
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  font: 500 clamp(16px, 1.4vw, 23px)/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+.title-lockup {
+  position: relative;
+  width: 100%;
+  padding-top: clamp(24px, 2.8vw, 52px);
 }
-.eyebrow span {
-  display: block;
-  width: 42px;
-  margin-bottom: 17px;
-  border-top: 1px solid var(--signal);
-  box-shadow: 0 0 12px var(--signal);
+.mental-note {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: .03em;
+  font: italic 400 clamp(24px, 2.8vw, 52px)/.95 "Caveat", "Cormorant Garamond", cursive;
+  font-synthesis: style;
+  transform: translateX(-50%) rotate(-2deg);
+  transform-origin: center bottom;
 }
 .hero h1 {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-  margin: 28px 0 0;
+  margin: 0;
   padding-right: 8px;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -472,8 +477,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (max-width: 700px) {
   .hero { width: calc(100% - 44px); padding-top: clamp(24px, 4svh, 36px); }
-  .eyebrow { font-size: 13px; }
-  .hero h1 { margin-top: 22px; font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
+  .hero h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
   .edition { font-size: 27px; }
   .edition em { letter-spacing: .1em; }
   .catalogue-link { margin: 90px auto 70px; }
