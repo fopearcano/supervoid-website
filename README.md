@@ -22,12 +22,11 @@ home page. Node.js 22 or later is required; no package installation is needed.
 
 ## Loops newsletter connection
 
-Newsletter sign-ups are disabled until `window.SUPERVOID_LOOPS_FORM_URL` is set
-to the HTTPS endpoint copied from Loops → Forms → Settings → Form Endpoint before
-`src/main.js` loads. The endpoint has the form
-`https://app.loops.so/api/newsletter-form/<FORM_ID>`. The site sends the email as
-URL-encoded form data and only shows success when Loops returns
-`{ "success": true }`.
+Newsletter sign-ups use the Loops Form Endpoint assigned to
+`window.SUPERVOID_LOOPS_FORM_URL` in `index.html` before `src/main.js` loads.
+The site sends the email as URL-encoded form data and only shows success when
+Loops returns `{ "success": true }`. To replace the form, update that endpoint
+assignment with the new URL copied from Loops → Forms → Settings.
 
 The social icons link to `https://t.me/supervoid_editions` and
 `https://www.instagram.com/supervoid.editions/` by default. Set
