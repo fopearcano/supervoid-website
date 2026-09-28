@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Gloock&display=swap');
 
-@font-face {
-  font-family: "Aquiline Two";
-  src: url("../assets/AquilineTwo.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
 :root {
   color-scheme: dark;
   --black: #050a0b;
@@ -63,25 +55,6 @@ button { color: inherit; }
   margin-left: 50%;
   transform: translateX(-50%);
 }
-.title-lockup {
-  position: relative;
-  width: 100%;
-  padding-top: clamp(36px, 3.9vw, 72px);
-}
-.mental-note {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: calc(50% - clamp(12px, 3.5vw, 52px));
-  margin: 0;
-  white-space: nowrap;
-  color: #ff4fd8;
-  letter-spacing: 0;
-  font: 400 clamp(38px, 4.2vw, 78px)/.9 "Aquiline Two", "Aquiline", "Apple Chancery", "Segoe Script", cursive;
-  font-synthesis: none;
-  transform: translateX(-50%);
-  transform-origin: center bottom;
-}
 .hero h1 {
   display: flex;
   align-items: baseline;
@@ -115,12 +88,13 @@ button { color: inherit; }
   margin: 97px auto 77px;
   padding: 21px 0 7px;
   border-bottom: 1px solid var(--signal);
+  color: #ff4fd8;
   text-transform: uppercase;
   letter-spacing: .2em;
   font: 500 16px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
 .catalogue-link:hover,
-.catalogue-link:focus-visible { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .85); }
+.catalogue-link:focus-visible { color: #ff4fd8; text-shadow: 0 0 12px rgba(255, 79, 216, .78); }
 
 .signup h2 {
   margin: 0 0 16px;

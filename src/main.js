@@ -55,10 +55,7 @@ function home() {
   return `<main class="home">
     <section class="hero">
       <div class="masthead">
-        <div class="title-lockup">
-          <p class="mental-note">I've got a mental</p>
-          <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
-        </div>
+        <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
         <div class="edition">/<em>editions</em></div>
       </div>
       <a class="catalogue-link" href="/catalogue">Books for distant minds</a>
