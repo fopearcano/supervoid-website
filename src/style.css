@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Gloock&display=swap');
 
 :root {
   color-scheme: dark;
@@ -71,7 +71,7 @@ button { color: inherit; }
   padding-right: 8px;
   text-transform: uppercase;
   letter-spacing: 0;
-  font: 700 clamp(60px, 6.2vw, 80px)/.9 "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 400 clamp(60px, 6.2vw, 80px)/.9 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
   text-shadow: 0 0 2px rgba(255, 255, 255, .75), 0 0 17px rgba(255, 255, 255, .34), 0 0 38px rgba(255, 255, 255, .14);
 }
 .hero h1 span { display: block; }
@@ -79,7 +79,7 @@ button { color: inherit; }
   padding-right: 8px;
   text-align: right;
   letter-spacing: .14em;
-  font: italic 400 clamp(28px, 3.5vw, 41px)/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 400 clamp(28px, 3.5vw, 41px)/1.2 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
   text-shadow: 0 0 13px rgba(255, 255, 255, .3);
 }
 .catalogue-link {
