@@ -80,7 +80,7 @@ button { color: inherit; }
   font-style: italic;
   font-synthesis: style;
 }
-.catalogue-link {
+.catalogue-label {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,10 +91,9 @@ button { color: inherit; }
   color: #ff4fd8;
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 16px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+  white-space: nowrap;
+  font: 500 clamp(17px, 1.6vw, 19px)/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
-.catalogue-link:hover,
-.catalogue-link:focus-visible { color: #ff4fd8; text-shadow: 0 0 12px rgba(255, 79, 216, .78); }
 
 .signup h2 {
   margin: 0 0 16px;
@@ -287,18 +286,11 @@ button { color: inherit; }
   margin: 0 auto;
   padding: clamp(60px, 8.3vw, 110px) clamp(25px, 6.4vw, 101px) 23px;
 }
-.catalogue-intro > p:first-child {
-  margin: 0;
+.catalogue-heading {
+  margin: 0 0 23px;
   text-transform: uppercase;
   letter-spacing: .21em;
   font: 500 13px/1.3 "Cormorant Garamond", Garamond, Georgia, serif;
-}
-.catalogue-intro h1 {
-  margin: 15px 0 23px;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  font: 400 clamp(48px, 7.4vw, 96px)/1 "Cormorant Garamond", Garamond, Georgia, serif;
-  text-shadow: 0 0 16px rgba(255, 255, 255, .34), 0 0 32px rgba(255, 255, 255, .12);
 }
 .rule { height: 1px; background: var(--signal); box-shadow: 0 0 12px rgba(125, 255, 156, .65); }
 .books {
@@ -470,7 +462,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .hero h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
   .edition { font-size: 27px; }
   .edition em { letter-spacing: .1em; }
-  .catalogue-link { margin: 90px auto 70px; }
+  .catalogue-label { margin: 90px auto 70px; letter-spacing: .17em; }
   .signup h2 { font-size: 14px; letter-spacing: .15em; }
   .signup form { height: 51px; }
   .signup input { padding: 0 13px; font-size: 17px; }
@@ -488,7 +480,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .back-link { width: 50px; }
   .back-link svg { width: 46px; }
   .catalogue-intro { padding: 63px 24px 18px; }
-  .catalogue-intro h1 { font-size: clamp(29px, 8.3vw, 51px); letter-spacing: .08em; }
   .book { grid-template-columns: 1fr; gap: 29px; padding: 44px 0; }
   .cover { width: min(100%, 312px); margin: 0 auto; }
   .description { font-size: 18px; }
@@ -500,7 +491,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (max-width: 360px) {
   .edition { font-size: 25px; }
-  .catalogue-link { margin: 84px auto 64px; }
+  .catalogue-label { margin: 84px auto 64px; }
   .signup h2 { font-size: 14px; }
   .signup input { font-size: 16px; }
 }
