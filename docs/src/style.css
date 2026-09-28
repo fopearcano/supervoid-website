@@ -103,7 +103,7 @@ button { color: inherit; }
   border-bottom: 1px solid var(--signal);
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 14px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 500 16px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
 .catalogue-link:hover,
 .catalogue-link:focus-visible { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .85); }
