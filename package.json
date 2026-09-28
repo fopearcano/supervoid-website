@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node scripts/site.mjs dev",
     "build": "node scripts/site.mjs build",
+    "build:pages": "node scripts/site.mjs pages",
     "preview": "node scripts/site.mjs preview"
   }
 }

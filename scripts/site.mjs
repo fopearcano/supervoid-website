@@ -1,11 +1,12 @@
 import { createReadStream } from 'node:fs';
-import { access, copyFile, mkdir, rm, stat } from 'node:fs/promises';
+import { access, copyFile, mkdir, rm, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = join(projectRoot, 'dist');
+const pagesRoot = join(projectRoot, 'docs');
 const routes = new Set(['/catalogue', '/about', '/privacy']);
 const runtimeAssets = ['supervoid-logo-bw-2-transparent.png'];
 const contentTypes = {
@@ -19,27 +20,34 @@ const contentTypes = {
   '.svg': 'image/svg+xml',
 };
 
-async function build() {
-  await rm(distRoot, { recursive: true, force: true });
-  await mkdir(join(distRoot, 'src'), { recursive: true });
+async function build(outputRoot = distRoot, customDomain = null) {
+  await rm(outputRoot, { recursive: true, force: true });
+  await mkdir(join(outputRoot, 'src'), { recursive: true });
   await Promise.all([
-    copyFile(join(projectRoot, 'index.html'), join(distRoot, 'index.html')),
-    copyFile(join(projectRoot, 'src', 'main.js'), join(distRoot, 'src', 'main.js')),
-    copyFile(join(projectRoot, 'src', 'style.css'), join(distRoot, 'src', 'style.css')),
+    copyFile(join(projectRoot, 'index.html'), join(outputRoot, 'index.html')),
+    copyFile(join(projectRoot, 'src', 'main.js'), join(outputRoot, 'src', 'main.js')),
+    copyFile(join(projectRoot, 'src', 'style.css'), join(outputRoot, 'src', 'style.css')),
   ]);
 
   for (const route of routes) {
-    const routeDirectory = join(distRoot, route.slice(1));
+    const routeDirectory = join(outputRoot, route.slice(1));
     await mkdir(routeDirectory, { recursive: true });
     await copyFile(join(projectRoot, 'index.html'), join(routeDirectory, 'index.html'));
   }
 
-  await mkdir(join(distRoot, 'assets'));
+  await mkdir(join(outputRoot, 'assets'));
   await Promise.all(runtimeAssets.map((name) =>
-    copyFile(join(projectRoot, 'assets', name), join(distRoot, 'assets', name))
+    copyFile(join(projectRoot, 'assets', name), join(outputRoot, 'assets', name))
   ));
 
-  console.log('Built static site in dist/');
+  if (customDomain) {
+    await Promise.all([
+      writeFile(join(outputRoot, 'CNAME'), `${customDomain}\n`, 'utf8'),
+      writeFile(join(outputRoot, '.nojekyll'), '', 'utf8'),
+    ]);
+  }
+
+  console.log(`Built static site in ${outputRoot === pagesRoot ? 'docs/' : 'dist/'}`);
 }
 
 function sourceForPath(pathname, root, preview) {
@@ -117,8 +125,9 @@ async function serve(preview) {
 const command = process.argv[2];
 try {
   if (command === 'build') await build();
+  else if (command === 'pages') await build(pagesRoot, 'supervoideditions.com');
   else if (command === 'dev' || command === 'preview') await serve(command === 'preview');
-  else throw new Error('Usage: node scripts/site.mjs <build|dev|preview>');
+  else throw new Error('Usage: node scripts/site.mjs <build|pages|dev|preview>');
 } catch (error) {
   console.error(error.message);
   process.exitCode = 1;

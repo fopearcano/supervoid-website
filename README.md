@@ -23,12 +23,26 @@ home page. Node.js 22 or later is required; no package installation is needed.
 ## Loops newsletter connection
 
 Newsletter sign-ups are disabled until `window.SUPERVOID_LOOPS_FORM_URL` is set
-to a working HTTPS form endpoint before `src/main.js` loads. A configured form
-only shows success after the endpoint responds successfully. Verify the endpoint
-and update the privacy notice with the provider and contact details before
-enabling sign-ups.
+to the HTTPS endpoint copied from Loops → Forms → Settings → Form Endpoint before
+`src/main.js` loads. The endpoint has the form
+`https://app.loops.so/api/newsletter-form/<FORM_ID>`. The site sends the email as
+URL-encoded form data and only shows success when Loops returns
+`{ "success": true }`.
 
-To activate social links, set `window.SUPERVOID_TELEGRAM_URL` to an HTTPS `t.me`
-profile and `window.SUPERVOID_INSTAGRAM_URL` to an HTTPS `instagram.com` profile
-before `src/main.js` loads. Without those values, the icons remain visible but
-are not clickable.
+The social icons link to `https://t.me/supervoid_editions` and
+`https://www.instagram.com/supervoid.editions/` by default. Set
+`window.SUPERVOID_TELEGRAM_URL` or `window.SUPERVOID_INSTAGRAM_URL` before
+`src/main.js` loads to override either HTTPS profile URL.
+
+## Public deployment
+
+GitHub Pages publishes the tracked `docs/` directory from `main` at
+`https://supervoideditions.com`. Regenerate that directory after a site change:
+
+```bash
+npm run build:pages
+```
+
+The Pages build includes the custom-domain `CNAME` and disables Jekyll so the
+static output is served unchanged. Commit the regenerated `docs/` files with
+the corresponding source changes.
