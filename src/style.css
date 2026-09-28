@@ -49,11 +49,17 @@ button { color: inherit; }
   padding-top: clamp(24px, 4svh, 42px);
   text-align: center;
 }
+.masthead {
+  position: relative;
+  width: min(1680px, calc(100vw - clamp(44px, 6vw, 120px)));
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
 .eyebrow {
   text-align: left;
   text-transform: uppercase;
   letter-spacing: .2em;
-  font: 500 16px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 500 clamp(16px, 1.4vw, 23px)/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
 .eyebrow span {
   display: block;
@@ -71,7 +77,7 @@ button { color: inherit; }
   padding-right: 8px;
   text-transform: uppercase;
   letter-spacing: 0;
-  font: 400 clamp(60px, 6.2vw, 80px)/.9 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 400 clamp(60px, 13vw, 240px)/.9 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
   text-shadow: none;
 }
 .hero h1 span { display: block; }
@@ -79,7 +85,7 @@ button { color: inherit; }
   padding-right: 8px;
   text-align: right;
   letter-spacing: 0;
-  font: 400 clamp(28px, 3.5vw, 41px)/1.2 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 400 clamp(28px, 4.6vw, 82px)/1.2 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
   text-shadow: 0 0 13px rgba(255, 255, 255, .3);
 }
 .edition em {
