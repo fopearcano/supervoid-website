@@ -8,7 +8,7 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = join(projectRoot, 'dist');
 const pagesRoot = join(projectRoot, 'docs');
 const routes = new Set(['/catalogue', '/about', '/privacy']);
-const runtimeAssets = ['supervoid-logo-bw-2-transparent.png', 'supervoid-background.png'];
+const runtimeAssets = ['supervoid-logo-bw-2-transparent.png', 'supervoid-background.webm'];
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -17,6 +17,7 @@ const contentTypes = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
+  '.webm': 'video/webm',
   '.svg': 'image/svg+xml',
 };
 

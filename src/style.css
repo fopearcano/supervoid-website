@@ -18,12 +18,14 @@
 html, body, #app { min-height: 100%; margin: 0; }
 html, body { background: var(--black); }
 body { position: relative; min-width: 320px; }
-body::before {
+.site-background {
   position: fixed;
   z-index: 0;
   inset: 0;
-  background: var(--black) url('/assets/supervoid-background.png') center / cover no-repeat;
-  content: "";
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
 }
 #app { position: relative; z-index: 1; }
