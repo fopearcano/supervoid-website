@@ -14,7 +14,7 @@ const footer = (includeLabs = false) => `
     <footer class="footer">
       <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy</a>
     </footer>
-    ${includeLabs ? '<a class="labs-link" href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">Distant Minds Labs</a>' : ''}
+    ${includeLabs ? '<a class="labs-link" href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">Distant Minds Lab</a>' : ''}
   </div>`;
 
 const safeSocialUrl = (value, hostname) => {
@@ -59,7 +59,7 @@ function home() {
       <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
       <div class="edition">/<em>editions</em></div>
     </header>
-    <a class="catalogue-link" href="/catalogue">The Elsewhere</a>
+    <a class="catalogue-link" href="/catalogue">Elsewhere</a>
     <div class="transmissions-block">
       <section class="signup" aria-labelledby="signup-title">
         <h2 id="signup-title">Transmissions</h2>
@@ -103,7 +103,7 @@ function catalogue() {
   return `<main class="catalogue-page">
     ${topbar()}
     <section class="catalogue-intro" aria-labelledby="catalogue-title">
-      <h1 id="catalogue-title" class="catalogue-heading">Read or die</h1>
+      <h1 id="catalogue-title" class="catalogue-heading">Soon bookcrossing...</h1>
       <div class="rule" aria-hidden="true"></div>
     </section>
     <section class="books" aria-label="Forthcoming publications">
