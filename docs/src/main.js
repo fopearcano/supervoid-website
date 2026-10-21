@@ -6,7 +6,7 @@ const icon = (name) => {
   return icons[name];
 };
 
-const footer = `
+const footer = (includeLabs = false) => `
   <div class="site-footer">
     <div class="brand-mark has-uploaded-logo">
       <img class="brand-logo" src="/assets/supervoid-logo-bw-2-transparent.png" alt="Supervoid Editions logo">
@@ -14,6 +14,7 @@ const footer = `
     <footer class="footer">
       <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy</a>
     </footer>
+    ${includeLabs ? '<a class="labs-link" href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">Distant Minds Labs</a>' : ''}
   </div>`;
 
 const safeSocialUrl = (value, hostname) => {
@@ -53,18 +54,19 @@ function home() {
   const instagram = safeSocialUrl(window.SUPERVOID_INSTAGRAM_URL || defaultSocialUrls.instagram, 'instagram.com');
   const formDisabled = newsletterEndpoint ? '' : ' disabled';
   return `<main class="home">
-    <section class="hero">
-      <div class="masthead">
-        <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
-        <div class="edition">/<em>editions</em></div>
-      </div>
-      <p class="catalogue-label">Books for distant minds</p>
+    <header class="masthead">
+      <p class="books-comment" aria-label="Books for distant minds"><span aria-hidden="true">Books</span><span aria-hidden="true">For</span><span aria-hidden="true">Distant</span><span aria-hidden="true">Minds</span></p>
+      <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
+      <div class="edition">/<em>editions</em></div>
+    </header>
+    <a class="catalogue-link" href="/catalogue">The Elsewhere</a>
+    <div class="transmissions-block">
       <section class="signup" aria-labelledby="signup-title">
-        <h2 id="signup-title">Join the transmissions</h2>
+        <h2 id="signup-title">Transmissions</h2>
         <form id="newsletter-form"${newsletterEndpoint ? ` action="${newsletterEndpoint}" method="post"` : ' aria-label="Newsletter signup currently unavailable"'}>
           <label class="sr-only" for="email">Your email address</label>
           <input id="email" type="email" name="email" placeholder="your email here, please" required autocomplete="email"${formDisabled}>
-          <button aria-label="Join the transmissions" type="submit"${formDisabled}>
+          <button aria-label="Subscribe to Transmissions" type="submit"${formDisabled}>
             <svg class="spiral-submit" aria-hidden="true" focusable="false" viewBox="0 0 44 44">
               <path d="M5 22c0-11 8-17.5 18.5-16.5C34 6.5 39.3 16.6 36.1 26 33.2 34.5 24.4 39 16.2 35.8 9 33 6.1 25.4 9.1 18.8c2.6-5.7 9-8 14.3-5.5 4.6 2.2 6.2 7.6 3.7 11.7-2.1 3.5-6.6 4.6-9.6 2.2-2.5-2-2.7-5.7-.6-7.9 1.7-1.8 4.5-1.8 6.2-.2"/>
               <path d="M18.2 16.8 23.1 19.1 20.8 24.1"/>
@@ -77,9 +79,11 @@ function home() {
         ${social('Telegram', telegram)}<b aria-hidden="true"></b>
         ${social('Instagram', instagram)}
       </nav>
-    </section>
-    <p class="depth-motto">Black has depth</p>
-    ${footer}
+    </div>
+    <div class="bottom-block">
+      <p class="depth-motto">Black has depth</p>
+      ${footer(true)}
+    </div>
   </main>`;
 }
 
@@ -120,7 +124,7 @@ function catalogue() {
         </div>
       </article>
     </section>
-    ${footer}
+    ${footer()}
   </main>`;
 }
 

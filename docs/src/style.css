@@ -46,28 +46,33 @@ button { color: inherit; }
 
 .home, .catalogue-page {
   position: relative;
-  display: flex;
-  flex-direction: column;
   min-height: 100svh;
   background: transparent;
   overflow: hidden;
 }
 
-.hero {
-  position: relative;
-  z-index: 1;
-  width: min(552px, calc(100% - 48px));
-  margin: 0 auto;
-  padding-top: clamp(24px, 4svh, 42px);
-  text-align: center;
+.home {
+  --gap-min: clamp(28px, 4.4svh, 46px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(var(--gap-min), 1fr) auto minmax(var(--gap-min), 1fr) auto minmax(var(--gap-min), 1fr) auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.catalogue-page {
+  display: flex;
+  flex-direction: column;
 }
 .masthead {
   position: relative;
+  z-index: 1;
+  grid-row: 1;
   width: min(1680px, calc(100vw - clamp(44px, 6vw, 120px)));
-  margin-left: 50%;
-  transform: translateX(-50%);
+  margin-inline: auto;
+  padding-top: clamp(20px, 3svh, 30px);
+  text-align: center;
 }
-.hero h1 {
+.masthead h1 {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -79,7 +84,7 @@ button { color: inherit; }
   font: 400 clamp(60px, 13vw, 240px)/.9 "Gloock", "Cormorant Garamond", Garamond, Georgia, serif;
   text-shadow: none;
 }
-.hero h1 span { display: block; }
+.masthead h1 span { display: block; }
 .edition {
   padding-right: 8px;
   text-align: right;
@@ -92,19 +97,45 @@ button { color: inherit; }
   font-style: italic;
   font-synthesis: style;
 }
-.catalogue-label {
+.books-comment {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: max-content;
-  margin: 97px auto 77px;
-  padding: 21px 0 7px;
+  margin: 0 auto clamp(8px, 1.2svh, 14px) 0;
+  color: var(--white);
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font: 500 clamp(20px, 2.3vw, 38px)/.85 "Cormorant Garamond", Garamond, Georgia, serif;
+}
+.books-comment span { display: block; }
+.catalogue-link {
+  position: relative;
+  z-index: 1;
+  grid-row: 3;
+  justify-self: center;
+  width: max-content;
+  margin-top: 0;
+  padding: 0 0 7px;
   border-bottom: 1px solid var(--signal);
   color: #ff4fd8;
   text-transform: uppercase;
-  letter-spacing: .2em;
+  letter-spacing: .18em;
   white-space: nowrap;
-  font: 500 clamp(17px, 1.6vw, 19px)/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+  font: 500 clamp(22px, 3.6vw, 46px)/1.15 "Cormorant Garamond", Garamond, Georgia, serif;
+  text-shadow: 0 0 10px rgba(125, 255, 156, .72), 0 0 28px rgba(125, 255, 156, .35);
+  transition: color .2s, text-shadow .2s;
+}
+.catalogue-link:hover { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .6); }
+
+.transmissions-block {
+  position: relative;
+  z-index: 1;
+  grid-row: 5;
+  justify-self: center;
+  width: min(552px, calc(100% - 48px));
+  text-align: center;
 }
 
 .signup h2 {
@@ -194,20 +225,28 @@ button { color: inherit; }
 .socials b { height: 30px; border-left: 1px solid var(--line); }
 
 .depth-motto {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  flex: 1 0 118px;
-  place-items: center;
-  width: 100%;
-  min-height: 118px;
-  margin: 0;
-  padding: 28px 24px;
+  display: block;
+  width: auto;
+  min-height: 0;
+  margin: 0 0 9px;
+  padding: 0;
   color: var(--white);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: .24em;
   font: 500 clamp(14px, 1.5vw, 17px)/1.1 "Cormorant Garamond", Garamond, Georgia, serif;
+}
+
+.bottom-block {
+  position: relative;
+  z-index: 1;
+  grid-row: 7;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .site-footer {
@@ -223,7 +262,7 @@ button { color: inherit; }
   padding: 39px clamp(24px, 4.6vw, 70px) 25px;
   text-align: center;
 }
-.home .site-footer { margin-top: 0; padding-top: 0; }
+.home .site-footer { margin: 0; padding: 0 clamp(24px, 4.6vw, 70px) 25px; }
 .brand-mark {
   display: block;
   width: 108px;
@@ -235,17 +274,21 @@ button { color: inherit; }
   height: auto;
   filter: invert(1) contrast(1.5);
 }
+.footer,
+.labs-link {
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font: 500 11px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+}
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  text-transform: uppercase;
-  letter-spacing: .13em;
-  font: 500 11px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
 .footer i { width: 24px; border-top: 1px solid var(--signal); }
-.footer a:hover { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .8); }
+.footer a:hover,
+.labs-link:hover { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .8); }
 
 .catalogue-page { min-height: 100svh; }
 .topbar {
@@ -470,11 +513,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 @media (max-width: 700px) {
-  .hero { width: calc(100% - 44px); padding-top: clamp(24px, 4svh, 36px); }
-  .hero h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
+  .home { --gap-min: clamp(24px, 4svh, 40px); }
+  .masthead { padding-top: clamp(18px, 3svh, 24px); }
+  .masthead h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
   .edition { font-size: 27px; }
   .edition em { letter-spacing: .1em; }
-  .catalogue-label { margin: 90px auto 70px; letter-spacing: .17em; }
+  .books-comment { letter-spacing: .14em; }
+  .catalogue-link { letter-spacing: .15em; }
+  .transmissions-block { width: calc(100% - 44px); }
   .signup h2 { font-size: 14px; letter-spacing: .15em; }
   .signup form { height: 51px; }
   .signup input { padding: 0 13px; font-size: 17px; }
@@ -483,8 +529,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .socials { gap: 15px; }
   .socials a, .socials .social-icon { width: 37px; height: 37px; }
   .site-footer { padding: 44px 22px 22px; }
+  .home .site-footer { padding: 0 22px 22px; }
   .brand-mark { width: 86px; height: auto; }
-  .footer { gap: 10px; font-size: 10px; }
+  .footer { gap: 10px; }
+  .footer, .labs-link { font-size: 10px; }
   .footer i { width: 17px; }
   .topbar { padding: 24px 22px; font-size: 10px; }
   .wordmark { font-size: 18px; }
@@ -503,7 +551,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (max-width: 360px) {
   .edition { font-size: 25px; }
-  .catalogue-label { margin: 84px auto 64px; }
   .signup h2 { font-size: 14px; }
   .signup input { font-size: 16px; }
 }
