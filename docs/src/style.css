@@ -512,6 +512,10 @@ button { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
+@media (min-width: 701px) {
+  .home { --gap-min: clamp(60px, 7svh, 78px); }
+}
+
 @media (max-width: 700px) {
   .home { --gap-min: clamp(24px, 4svh, 40px); }
   .masthead { padding-top: clamp(18px, 3svh, 24px); }
