@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = join(projectRoot, 'dist');
 const pagesRoot = join(projectRoot, 'docs');
-const routes = new Set(['/catalogue', '/about', '/privacy']);
+const routes = new Set(['/elsewhere', '/catalogue', '/about', '/privacy']);
 const runtimeAssets = [
   'supervoid-logo-bw-2-transparent.png',
   'supervoid-background.webm',

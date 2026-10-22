@@ -124,10 +124,15 @@ button { color: inherit; }
   letter-spacing: .18em;
   white-space: nowrap;
   font: 500 clamp(22px, 3.6vw, 46px)/1.15 "Cormorant Garamond", Garamond, Georgia, serif;
-  text-shadow: 0 0 10px rgba(125, 255, 156, .72), 0 0 28px rgba(125, 255, 156, .35);
+  text-shadow: 0 0 7px rgba(255, 79, 216, .38), 0 0 18px rgba(125, 255, 156, .22);
   transition: color .2s, text-shadow .2s;
+  animation: elsewhere-pulse 4s ease-in-out infinite;
 }
-.catalogue-link:hover { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .6); }
+.catalogue-link:link,
+.catalogue-link:visited,
+.catalogue-link:hover,
+.catalogue-link:focus,
+.catalogue-link:active { color: #ff4fd8; }
 
 .transmissions-block {
   position: relative;
@@ -312,7 +317,6 @@ button { color: inherit; }
   font: 400 26px/1 "Cormorant Garamond", Garamond, Georgia, serif;
   letter-spacing: .16em;
 }
-.wordmark em { font-size: 16px; text-transform: none; }
 .back-link {
   display: grid;
   flex: 0 0 auto;
@@ -515,6 +519,10 @@ button { color: inherit; }
 
 a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes elsewhere-pulse {
+  0%, 100% { text-shadow: 0 0 7px rgba(255, 79, 216, .38), 0 0 18px rgba(125, 255, 156, .22); }
+  50% { text-shadow: 0 0 15px rgba(255, 79, 216, .9), 0 0 34px rgba(125, 255, 156, .52); }
+}
 
 @media (min-width: 701px) {
   .home { --gap-min: clamp(130px, 16svh, 175px); }
@@ -544,7 +552,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .footer i { width: 17px; }
   .topbar { padding: 24px 22px; font-size: 10px; }
   .wordmark { font-size: 18px; }
-  .wordmark em { display: none; }
   .back-link { width: 50px; }
   .back-link svg { width: 46px; }
   .catalogue-intro { padding: 63px 24px 18px; }
@@ -565,4 +572,5 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .catalogue-link { animation-duration: 4s !important; }
 }

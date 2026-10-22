@@ -1,6 +1,6 @@
 # Supervoid Editions
 
-A responsive, static landing page and catalogue for Supervoid Editions.
+A responsive, static landing page and Elsewhere publication preview for Supervoid Editions.
 The site uses a deep blue-black CSS canvas and the transparent
 `assets/supervoid-logo-bw-2-transparent.png` mark. The uploaded backgrounds,
 earlier logos, and `source_main*.png` files remain design references
@@ -17,7 +17,8 @@ servers listen on the local network by default, so another device on the same
 network can visit `http://<this-computer's-LAN-IP>:4173`. Set `HOST` or `PORT`
 to override either value. Build the deployable static site with `npm run build`,
 then check it with `npm run preview`. The build creates entry points for `/`,
-`/catalogue`, `/about`, and `/privacy`. The latter two URLs open panels over the
+`/elsewhere`, `/about`, and `/privacy`. The former `/catalogue` URL remains as a
+compatibility alias for `/elsewhere`; the latter two URLs open panels over the
 home page. Node.js 22 or later is required; no package installation is needed.
 
 ## Loops newsletter connection

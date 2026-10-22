@@ -55,11 +55,11 @@ function home() {
   const formDisabled = newsletterEndpoint ? '' : ' disabled';
   return `<main class="home">
     <header class="masthead">
-      <p class="books-comment" aria-label="Books for distant minds"><span aria-hidden="true">Books</span><span aria-hidden="true">For</span><span aria-hidden="true">Distant</span><span aria-hidden="true">Minds</span></p>
+      <p class="books-comment" aria-label="Stories for distant minds"><span aria-hidden="true">Stories</span><span aria-hidden="true">For</span><span aria-hidden="true">Distant</span><span aria-hidden="true">Minds</span></p>
       <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
       <div class="edition">/<em>editions</em></div>
     </header>
-    <a class="catalogue-link" href="/catalogue">Elsewhere</a>
+    <a class="catalogue-link" href="/elsewhere">Elsewhere</a>
     <div class="transmissions-block">
       <section class="signup" aria-labelledby="signup-title">
         <h2 id="signup-title">Transmissions</h2>
@@ -89,7 +89,7 @@ function home() {
 
 function topbar() {
   return `<header class="topbar">
-    <a href="/" class="wordmark">Supervoid <em>/ editions</em></a>
+    <a href="/" class="wordmark">Elsewhere</a>
     <a href="/" class="back-link" aria-label="Return to home">
       <svg aria-hidden="true" focusable="false" viewBox="0 0 56 28">
         <path d="M50 14.8c-10.5-.8-21.4-1.5-31.8-.2-4.2.5-7.8 1.4-11.4 3.1"/>
@@ -168,17 +168,20 @@ const dialogMarkup = `
   </dialog>`;
 
 const currentPath = () => window.location.pathname.replace(/\/+$/, '') || '/';
+if (currentPath() === '/catalogue') {
+  window.history.replaceState(null, '', `/elsewhere${window.location.search}${window.location.hash}`);
+}
 const initialPath = currentPath();
 const app = document.querySelector('#app');
-app.innerHTML = (initialPath === '/catalogue' ? catalogue : home)() + dialogMarkup;
+app.innerHTML = (initialPath === '/elsewhere' ? catalogue : home)() + dialogMarkup;
 
 const dialog = document.querySelector('#information-dialog');
 const dialogTitle = dialog.querySelector('#dialog-title');
 const dialogCopy = dialog.querySelector('#dialog-copy');
-let modalReturnPath = initialPath === '/catalogue' ? '/catalogue' : '/';
+let modalReturnPath = initialPath === '/elsewhere' ? '/elsewhere' : '/';
 
 function setPageTitle(path) {
-  const title = path === '/catalogue' ? 'Catalogue'
+  const title = path === '/elsewhere' ? 'Elsewhere'
     : path === '/about' ? 'About'
     : path === '/privacy' ? 'Privacy'
     : null;
@@ -226,7 +229,7 @@ dialog.addEventListener('close', () => {
 window.addEventListener('popstate', () => {
   const path = currentPath();
   if (path === '/about' || path === '/privacy') {
-    modalReturnPath = window.history.state?.returnPath || (initialPath === '/catalogue' ? '/catalogue' : '/');
+    modalReturnPath = window.history.state?.returnPath || (initialPath === '/elsewhere' ? '/elsewhere' : '/');
     showPanel(path.slice(1), false);
   } else if (dialog.open) {
     dialog.close();
