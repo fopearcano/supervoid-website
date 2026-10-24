@@ -89,7 +89,7 @@ function home() {
 
 function topbar() {
   return `<header class="topbar">
-    <a href="/" class="wordmark">Elsewhere</a>
+    <a href="/" class="wordmark"><span>Supervoid</span><em>/elsewhere</em></a>
     <a href="/" class="back-link" aria-label="Return to home">
       <svg aria-hidden="true" focusable="false" viewBox="0 0 56 28">
         <path d="M50 14.8c-10.5-.8-21.4-1.5-31.8-.2-4.2.5-7.8 1.4-11.4 3.1"/>
