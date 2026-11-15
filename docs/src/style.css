@@ -119,20 +119,21 @@ button { color: inherit; }
   margin-top: 0;
   padding: 0 0 7px;
   border-bottom: 1px solid var(--signal);
-  color: #ff4fd8;
+  color: #7dff9c;
   text-transform: uppercase;
   letter-spacing: .18em;
   white-space: nowrap;
   font: 500 clamp(22px, 3.6vw, 46px)/1.15 "Cormorant Garamond", Garamond, Georgia, serif;
-  text-shadow: 0 0 7px rgba(255, 79, 216, .38), 0 0 18px rgba(125, 255, 156, .22);
+  text-shadow: 0 0 5px rgba(125, 255, 156, .92), 0 0 14px rgba(125, 255, 156, .64), 0 0 30px rgba(125, 255, 156, .34);
   transition: color .2s, text-shadow .2s;
-  animation: elsewhere-pulse 4s ease-in-out infinite;
+  will-change: color, text-shadow;
+  animation: elsewhere-rgb-glow 8s linear infinite;
 }
 .catalogue-link:link,
 .catalogue-link:visited,
 .catalogue-link:hover,
 .catalogue-link:focus,
-.catalogue-link:active { color: #ff4fd8; }
+.catalogue-link:active { color: #7dff9c; }
 
 .transmissions-block {
   position: relative;
@@ -527,9 +528,23 @@ button { color: inherit; }
 
 a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes elsewhere-pulse {
-  0%, 100% { text-shadow: 0 0 7px rgba(255, 79, 216, .38), 0 0 18px rgba(125, 255, 156, .22); }
-  50% { text-shadow: 0 0 15px rgba(255, 79, 216, .9), 0 0 34px rgba(125, 255, 156, .52); }
+@keyframes elsewhere-rgb-glow {
+  0%, 100% {
+    color: #7dff9c;
+    text-shadow: 0 0 5px rgba(125, 255, 156, .95), 0 0 14px rgba(125, 255, 156, .7), 0 0 30px rgba(125, 255, 156, .38);
+  }
+  20%, 80% {
+    color: #4fffd8;
+    text-shadow: 0 0 5px rgba(79, 255, 216, .95), 0 0 14px rgba(79, 255, 216, .72), 0 0 30px rgba(79, 255, 216, .4);
+  }
+  40%, 60% {
+    color: #8f6cff;
+    text-shadow: 0 0 5px rgba(143, 108, 255, .95), 0 0 14px rgba(143, 108, 255, .72), 0 0 30px rgba(143, 108, 255, .4);
+  }
+  50% {
+    color: #ff4fd8;
+    text-shadow: 0 0 5px rgba(255, 79, 216, .95), 0 0 14px rgba(255, 79, 216, .72), 0 0 30px rgba(255, 79, 216, .4);
+  }
 }
 
 @media (min-width: 701px) {
@@ -587,5 +602,5 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-  .catalogue-link { animation-duration: 4s !important; }
+  .catalogue-link { animation-duration: 12s !important; }
 }
