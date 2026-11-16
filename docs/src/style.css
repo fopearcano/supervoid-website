@@ -115,25 +115,21 @@ button { color: inherit; }
   z-index: 1;
   grid-row: 3;
   justify-self: center;
-  width: max-content;
+  display: block;
+  width: clamp(230px, 34vw, 480px);
+  max-width: calc(100vw - 44px);
   margin-top: 0;
-  padding: 0 0 7px;
-  border-bottom: 1px solid var(--signal);
-  color: #7dff9c;
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  white-space: nowrap;
-  font: 500 clamp(22px, 3.6vw, 46px)/1.15 "Cormorant Garamond", Garamond, Georgia, serif;
-  text-shadow: 0 0 5px rgba(125, 255, 156, .92), 0 0 14px rgba(125, 255, 156, .64), 0 0 30px rgba(125, 255, 156, .34);
-  transition: color .2s, text-shadow .2s;
-  will-change: color, text-shadow;
-  animation: elsewhere-rgb-glow 8s linear infinite;
+  padding: 0;
+  border: 0;
+  line-height: 0;
 }
-.catalogue-link:link,
-.catalogue-link:visited,
-.catalogue-link:hover,
-.catalogue-link:focus,
-.catalogue-link:active { color: #7dff9c; }
+.catalogue-link-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(-10deg);
+  transform-origin: center;
+}
 
 .transmissions-block {
   position: relative;
@@ -528,24 +524,6 @@ button { color: inherit; }
 
 a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 @keyframes panel-arrive { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes elsewhere-rgb-glow {
-  0%, 100% {
-    color: #7dff9c;
-    text-shadow: 0 0 5px rgba(125, 255, 156, .95), 0 0 14px rgba(125, 255, 156, .7), 0 0 30px rgba(125, 255, 156, .38);
-  }
-  20%, 80% {
-    color: #4fffd8;
-    text-shadow: 0 0 5px rgba(79, 255, 216, .95), 0 0 14px rgba(79, 255, 216, .72), 0 0 30px rgba(79, 255, 216, .4);
-  }
-  40%, 60% {
-    color: #8f6cff;
-    text-shadow: 0 0 5px rgba(143, 108, 255, .95), 0 0 14px rgba(143, 108, 255, .72), 0 0 30px rgba(143, 108, 255, .4);
-  }
-  50% {
-    color: #ff4fd8;
-    text-shadow: 0 0 5px rgba(255, 79, 216, .95), 0 0 14px rgba(255, 79, 216, .72), 0 0 30px rgba(255, 79, 216, .4);
-  }
-}
 
 @media (min-width: 701px) {
   .home { --gap-min: clamp(130px, 16svh, 175px); }
@@ -558,7 +536,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .edition { font-size: 27px; }
   .edition em { letter-spacing: .1em; }
   .books-comment { letter-spacing: .14em; }
-  .catalogue-link { letter-spacing: .15em; }
   .transmissions-block { width: calc(100% - 44px); }
   .signup h2 { font-size: 14px; letter-spacing: .15em; }
   .signup form { height: 51px; }
@@ -602,5 +579,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-  .catalogue-link { animation-duration: 12s !important; }
 }

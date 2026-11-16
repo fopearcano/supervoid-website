@@ -12,6 +12,7 @@ const runtimeAssets = [
   'supervoid-logo-bw-2-transparent.png',
   'supervoid-background.webm',
   'supervoid-background.mp4',
+  'elsewhere-neon-green-fuchsia.webp',
 ];
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
