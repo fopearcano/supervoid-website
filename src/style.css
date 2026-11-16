@@ -127,8 +127,6 @@ button { color: inherit; }
   display: block;
   width: 100%;
   height: auto;
-  transform: rotate(-10deg);
-  transform-origin: center;
 }
 
 .transmissions-block {
