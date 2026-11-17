@@ -129,23 +129,39 @@
   }
 
   function relax(nodes, iterations, constrain) {
+    // A cell is at least as wide as the largest possible collision distance.
+    // Rebuild the grid each pass because relaxation moves the nodes.
+    var maxRadius = 0;
+    nodes.forEach(function (n) { maxRadius = Math.max(maxRadius, n.r); });
+    var cell = Math.max(24, maxRadius * 2 + 4);
     for (var it = 0; it < iterations; it++) {
+      var grid = Object.create(null);
       for (var i = 0; i < nodes.length; i++) {
         var a = nodes[i];
-        for (var j = i + 1; j < nodes.length; j++) {
-          var b = nodes[j];
-          var dx = b.x - a.x;
-          var dy = b.y - a.y;
-          var min = a.r + b.r + 4;
-          var d2 = dx * dx + dy * dy;
-          if (d2 >= min * min) continue;
-          var d = Math.sqrt(d2) || 0.01;
-          var push = (min - d) / 2;
-          var ux = dx / d;
-          var uy = dy / d;
-          a.x -= ux * push; a.y -= uy * push;
-          b.x += ux * push; b.y += uy * push;
+        var cx = Math.floor(a.x / cell);
+        var cy = Math.floor(a.y / cell);
+        for (var gx = cx - 1; gx <= cx + 1; gx++) {
+          for (var gy = cy - 1; gy <= cy + 1; gy++) {
+            var nearby = grid[gx + ',' + gy];
+            if (!nearby) continue;
+            for (var j = 0; j < nearby.length; j++) {
+              var b = nearby[j];
+              var dx = b.x - a.x;
+              var dy = b.y - a.y;
+              var min = a.r + b.r + 4;
+              var d2 = dx * dx + dy * dy;
+              if (d2 >= min * min) continue;
+              var d = Math.sqrt(d2);
+              var ux = d ? dx / d : 1;
+              var uy = d ? dy / d : 0;
+              var push = (min - d) / 2;
+              a.x -= ux * push; a.y -= uy * push;
+              b.x += ux * push; b.y += uy * push;
+            }
+          }
         }
+        var key = Math.floor(a.x / cell) + ',' + Math.floor(a.y / cell);
+        (grid[key] = grid[key] || []).push(a);
       }
       nodes.forEach(constrain);
     }

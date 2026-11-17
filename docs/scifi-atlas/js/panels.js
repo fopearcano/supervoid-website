@@ -119,6 +119,9 @@
     }
     html += '<a class="btn" href="https://en.wikipedia.org/w/index.php?search=' + q + '" target="_blank" rel="noopener">Wikipedia ↗</a>';
     html += '<a class="btn" href="https://openlibrary.org/search?q=' + q + '" target="_blank" rel="noopener">Open Library ↗</a>';
+    if (w.sourceId) {
+      html += '<a class="btn" href="https://www.goodreads.com/book/show/' + w.sourceId + '" target="_blank" rel="noopener">Catalog source ↗</a>';
+    }
     html += '</div>';
     html += '<p class="d-cat">' + esc(w.catalogue) + ' · bearing ' + bearing(w) + '° · orbit ' + esc(S.yearText(w)) + '</p>';
     return html;
