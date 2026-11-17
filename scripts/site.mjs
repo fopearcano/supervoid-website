@@ -1,12 +1,14 @@
 import { createReadStream } from 'node:fs';
-import { access, copyFile, mkdir, rm, stat, writeFile } from 'node:fs/promises';
+import { access, copyFile, cp, mkdir, rm, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
-import { dirname, extname, join, resolve } from 'node:path';
+import { dirname, extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = join(projectRoot, 'dist');
 const pagesRoot = join(projectRoot, 'docs');
+const atlasSourceRoot = join(projectRoot, 'vendor', 'scifi-atlas');
+const atlasRoute = '/scifi-atlas';
 const routes = new Set(['/elsewhere', '/catalogue', '/about', '/privacy']);
 const runtimeAssets = [
   'supervoid-logo-bw-2-transparent.png',
@@ -47,6 +49,8 @@ async function build(outputRoot = distRoot, customDomain = null) {
     copyFile(join(projectRoot, 'assets', name), join(outputRoot, 'assets', name))
   ));
 
+  await cp(atlasSourceRoot, join(outputRoot, atlasRoute.slice(1)), { recursive: true });
+
   if (customDomain) {
     await Promise.all([
       writeFile(join(outputRoot, 'CNAME'), `${customDomain}\n`, 'utf8'),
@@ -60,6 +64,13 @@ async function build(outputRoot = distRoot, customDomain = null) {
 function sourceForPath(pathname, root, preview) {
   const route = pathname.replace(/\/+$/, '') || '/';
   if (route === '/') return join(root, 'index.html');
+  const atlasRoot = preview ? join(root, atlasRoute.slice(1)) : atlasSourceRoot;
+  if (route === atlasRoute) return join(atlasRoot, 'index.html');
+  if (pathname.startsWith(`${atlasRoute}/`)) {
+    const relativePath = pathname.slice(atlasRoute.length + 1);
+    const filePath = resolve(atlasRoot, relativePath);
+    return filePath.startsWith(`${atlasRoot}${sep}`) ? filePath : null;
+  }
   if (routes.has(route)) {
     return preview ? join(root, route.slice(1), 'index.html') : join(root, 'index.html');
   }

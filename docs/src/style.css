@@ -275,7 +275,8 @@ button { color: inherit; }
   filter: invert(1) contrast(1.5);
 }
 .footer,
-.labs-link {
+.labs-link,
+.atlas-link {
   text-transform: uppercase;
   letter-spacing: .13em;
   font: 500 11px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
@@ -286,13 +287,18 @@ button { color: inherit; }
   justify-content: center;
   gap: 14px;
 }
-.labs-link {
-  margin-top: 6px;
+.labs-link,
+.atlas-link {
   font-style: italic;
 }
+.labs-link {
+  margin-top: 6px;
+}
+.atlas-link { margin-top: 6px; }
 .footer i { width: 24px; border-top: 1px solid var(--signal); }
 .footer a:hover,
-.labs-link:hover { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .8); }
+.labs-link:hover,
+.atlas-link:hover { color: var(--white); text-shadow: 0 0 12px rgba(255, 255, 255, .8); }
 
 .catalogue-page { min-height: 100svh; }
 .topbar {
@@ -546,7 +552,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .home .site-footer { padding: 0 22px 22px; }
   .brand-mark { width: 86px; height: auto; }
   .footer { gap: 10px; }
-  .footer, .labs-link { font-size: 10px; }
+  .footer, .labs-link, .atlas-link { font-size: 10px; }
   .footer i { width: 17px; }
   .topbar { padding: 24px 22px; font-size: 10px; }
   .wordmark {

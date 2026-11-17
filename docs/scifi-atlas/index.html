@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Atlas of Imagined Futures</title>
+  <meta name="description" content="An interactive star chart of science fiction literature: over two hundred works, their eras, themes and lines of influence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body>
+  <div class="app" id="app" data-view="galaxy">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <svg class="chart" id="chart" role="img" aria-labelledby="chart-title">
+      <title id="chart-title">Star chart of science fiction works. Use the search box or the Catalogue view to browse by keyboard.</title>
+    </svg>
+
+    <section class="catalogue" id="catalogue" hidden aria-label="Catalogue of works"></section>
+    <section class="guide" id="guide" hidden aria-label="Field guide to science fiction"></section>
+
+    <header class="masthead">
+      <h1 class="brand">Atlas of <em>Imagined</em> Futures</h1>
+      <p class="tagline" id="tagline">A star chart of science fiction literature</p>
+    </header>
+
+    <div class="toolbar" role="toolbar" aria-label="Chart controls">
+      <div class="search">
+        <label class="visually-hidden" for="search">Search the atlas</label>
+        <input id="search" type="search" placeholder="Search titles, authors, themes" autocomplete="off" spellcheck="false"
+          role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list">
+        <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        <ul class="search-results" id="search-results" role="listbox" hidden></ul>
+      </div>
+      <div class="views" role="radiogroup" aria-label="View">
+        <button type="button" role="radio" data-view="galaxy" aria-checked="true">Galaxy</button>
+        <button type="button" role="radio" data-view="timeline" aria-checked="false">Timeline</button>
+        <button type="button" role="radio" data-view="catalogue" aria-checked="false">Catalogue</button>
+        <button type="button" role="radio" data-view="guide" aria-checked="false">Guide</button>
+      </div>
+      <button type="button" class="tool-btn" id="key-toggle" aria-controls="key" aria-expanded="true">Key</button>
+      <button type="button" class="tool-btn icon" id="theme-toggle" aria-label="Switch between light and dark chart">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9A7 7 0 0 1 12 3z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <aside class="key panel" id="key" aria-label="Chart key and filters">
+      <section class="key-section">
+        <h2 class="key-title">Sectors <button type="button" class="link-btn" id="sectors-all">Show all</button></h2>
+        <ul class="sector-list" id="sector-list"></ul>
+      </section>
+      <section class="key-section">
+        <h2 class="key-title">Published</h2>
+        <div class="range" id="year-range">
+          <div class="range-track"><div class="range-fill" id="range-fill"></div></div>
+          <label class="visually-hidden" for="year-from">From year</label>
+          <input type="range" id="year-from" min="0" max="100" step="1" value="0">
+          <label class="visually-hidden" for="year-to">To year</label>
+          <input type="range" id="year-to" min="0" max="100" step="1" value="100">
+        </div>
+        <p class="range-readout"><output id="year-from-out">160</output><span>to</span><output id="year-to-out">2026</output></p>
+      </section>
+      <section class="key-section">
+        <h2 class="key-title">Display</h2>
+        <label class="check"><input type="checkbox" id="awards-only"> Hugo, Nebula or Clarke winners only</label>
+        <label class="check"><input type="checkbox" id="show-links" checked> Show lines of influence</label>
+        <div class="seg" role="radiogroup" aria-label="Colour stars by">
+          <span class="seg-label">Colour by</span>
+          <button type="button" role="radio" data-color="sector" aria-checked="true">Sector</button>
+          <button type="button" role="radio" data-color="era" aria-checked="false">Era</button>
+        </div>
+        <ul class="era-legend" id="era-legend" hidden></ul>
+      </section>
+      <section class="key-section">
+        <h2 class="key-title">Voyages</h2>
+        <ul class="tour-list" id="tour-list"></ul>
+      </section>
+    </aside>
+
+    <aside class="detail panel" id="detail" hidden aria-live="polite"></aside>
+
+    <div class="tour-card panel" id="tour-card" hidden role="region" aria-label="Voyage"></div>
+    <div class="spotlight panel" id="spotlight" hidden role="status"></div>
+    <div class="tooltip" id="tooltip" hidden></div>
+
+    <div class="zoom" role="group" aria-label="Zoom">
+      <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+      <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+      <button type="button" id="zoom-reset" aria-label="Fit the whole chart">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>
+    <p class="hint" id="hint">Scroll or pinch to zoom &middot; drag to pan &middot; click a star</p>
+  </div>
+
+  <script src="data/meta.js?v=5"></script>
+  <script src="data/sectors/opera.js?v=5"></script>
+  <script src="data/sectors/military.js?v=5"></script>
+  <script src="data/sectors/contact.js?v=5"></script>
+  <script src="data/sectors/hard.js?v=5"></script>
+  <script src="data/sectors/eco.js?v=5"></script>
+  <script src="data/sectors/apoc.js?v=5"></script>
+  <script src="data/sectors/dystopia.js?v=5"></script>
+  <script src="data/sectors/utopia.js?v=5"></script>
+  <script src="data/sectors/identity.js?v=5"></script>
+  <script src="data/sectors/posthuman.js?v=5"></script>
+  <script src="data/sectors/cyber.js?v=5"></script>
+  <script src="data/sectors/ai.js?v=5"></script>
+  <script src="data/sectors/time.js?v=5"></script>
+  <script src="data/sectors/inner.js?v=5"></script>
+  <script src="data/sectors/satire.js?v=5"></script>
+  <script src="data/tours.js?v=5"></script>
+  <script src="data/guide/themes.js?v=5"></script>
+  <script src="data/guide/science.js?v=5"></script>
+  <script src="data/guide/craft.js?v=5"></script>
+  <script src="js/layout.js?v=5"></script>
+  <script src="js/decor.js?v=5"></script>
+  <script src="js/chart.js?v=5"></script>
+  <script src="js/panels.js?v=5"></script>
+  <script src="js/guide.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+</body>
+</html>

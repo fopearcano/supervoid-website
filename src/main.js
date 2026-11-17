@@ -14,7 +14,9 @@ const footer = (includeLabs = false) => `
     <footer class="footer">
       <a href="/about" data-panel="about">About</a><i aria-hidden="true"></i><a href="/privacy" data-panel="privacy">Privacy</a>
     </footer>
-    ${includeLabs ? '<a class="labs-link" href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">Distant Minds Lab</a>' : ''}
+    ${includeLabs ? `
+      <a class="labs-link" href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">Distant Minds Lab</a>
+      <a class="atlas-link" href="/scifi-atlas/">ATLAS OF IMAGINED FUTURES</a>` : ''}
   </div>`;
 
 const safeSocialUrl = (value, hostname) => {
@@ -83,7 +85,7 @@ function home() {
       </nav>
     </div>
     <div class="bottom-block">
-      <p class="depth-motto">Black has depth</p>
+      <p class="depth-motto">“Black has depth”</p>
       ${footer(true)}
     </div>
   </main>`;
