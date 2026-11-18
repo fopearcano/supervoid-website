@@ -103,7 +103,7 @@ button { color: inherit; }
   right: 0;
   width: 188px;
   padding: 7px 15px;
-  border: 1px solid var(--line);
+  border: 0;
   background: rgba(5, 10, 11, .96);
   box-shadow: 0 0 28px rgba(125, 255, 156, .16);
   backdrop-filter: blur(8px);
