@@ -2,7 +2,7 @@
 (function (S) {
   'use strict';
 
-  var VERSION = '?v=8';
+  var VERSION = '?v=9';
   var params = new URLSearchParams(location.search);
   var mode = params.get('load');
   if (mode !== 'curated' && mode !== 'full') mode = 'featured';

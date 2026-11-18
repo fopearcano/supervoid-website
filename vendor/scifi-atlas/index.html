@@ -8,10 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap">
-  <link rel="stylesheet" href="css/styles.css?v=8">
+  <link rel="stylesheet" href="css/styles.css?v=9">
 </head>
 <body>
-  <div class="app" id="app" data-view="galaxy">
+  <div class="app key-closed" id="app" data-view="galaxy">
     <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
     <svg class="chart" id="chart" role="img" aria-labelledby="chart-title">
       <title id="chart-title">Star chart of science fiction works. Use the search box or the Catalogue view to browse by keyboard.</title>
@@ -21,7 +21,10 @@
     <section class="guide" id="guide" hidden aria-label="Field guide to science fiction"></section>
 
     <header class="masthead">
-      <h1 class="brand">Atlas of <em>Imagined</em> Futures</h1>
+      <div class="brand-lockup">
+        <h1 class="brand">Atlas of <em>Imagined</em> Futures</h1>
+        <img class="brand-logo" src="../assets/supervoid-logo-bw-2-transparent.png" alt="Supervoid Editions" width="1751" height="898">
+      </div>
       <p class="tagline" id="tagline">A star chart of science fiction literature</p>
     </header>
 
@@ -39,7 +42,7 @@
         <button type="button" role="radio" data-view="catalogue" aria-checked="false">Catalogue</button>
         <button type="button" role="radio" data-view="guide" aria-checked="false">Guide</button>
       </div>
-      <button type="button" class="tool-btn" id="key-toggle" aria-controls="key" aria-expanded="true">Key</button>
+      <button type="button" class="tool-btn" id="key-toggle" aria-controls="key" aria-expanded="false">Key</button>
       <button type="button" class="tool-btn icon" id="theme-toggle" aria-label="Switch between light and dark chart">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9A7 7 0 0 1 12 3z" fill="currentColor"/></svg>
       </button>
@@ -106,27 +109,27 @@
     <p class="hint" id="hint">Scroll or pinch to zoom &middot; drag to pan &middot; click a star</p>
   </div>
 
-  <script src="data/meta.js?v=8"></script>
-  <script src="data/sectors/opera.js?v=8"></script>
-  <script src="data/sectors/military.js?v=8"></script>
-  <script src="data/sectors/contact.js?v=8"></script>
-  <script src="data/sectors/hard.js?v=8"></script>
-  <script src="data/sectors/eco.js?v=8"></script>
-  <script src="data/sectors/apoc.js?v=8"></script>
-  <script src="data/sectors/dystopia.js?v=8"></script>
-  <script src="data/sectors/utopia.js?v=8"></script>
-  <script src="data/sectors/identity.js?v=8"></script>
-  <script src="data/sectors/posthuman.js?v=8"></script>
-  <script src="data/sectors/cyber.js?v=8"></script>
-  <script src="data/sectors/ai.js?v=8"></script>
-  <script src="data/sectors/time.js?v=8"></script>
-  <script src="data/sectors/inner.js?v=8"></script>
-  <script src="data/sectors/satire.js?v=8"></script>
-  <script src="data/catalog-manifest.js?v=8"></script>
-  <script src="data/tours.js?v=8"></script>
-  <script src="data/guide/themes.js?v=8"></script>
-  <script src="data/guide/science.js?v=8"></script>
-  <script src="data/guide/craft.js?v=8"></script>
-  <script src="js/load.js?v=8"></script>
+  <script src="data/meta.js?v=9"></script>
+  <script src="data/sectors/opera.js?v=9"></script>
+  <script src="data/sectors/military.js?v=9"></script>
+  <script src="data/sectors/contact.js?v=9"></script>
+  <script src="data/sectors/hard.js?v=9"></script>
+  <script src="data/sectors/eco.js?v=9"></script>
+  <script src="data/sectors/apoc.js?v=9"></script>
+  <script src="data/sectors/dystopia.js?v=9"></script>
+  <script src="data/sectors/utopia.js?v=9"></script>
+  <script src="data/sectors/identity.js?v=9"></script>
+  <script src="data/sectors/posthuman.js?v=9"></script>
+  <script src="data/sectors/cyber.js?v=9"></script>
+  <script src="data/sectors/ai.js?v=9"></script>
+  <script src="data/sectors/time.js?v=9"></script>
+  <script src="data/sectors/inner.js?v=9"></script>
+  <script src="data/sectors/satire.js?v=9"></script>
+  <script src="data/catalog-manifest.js?v=9"></script>
+  <script src="data/tours.js?v=9"></script>
+  <script src="data/guide/themes.js?v=9"></script>
+  <script src="data/guide/science.js?v=9"></script>
+  <script src="data/guide/craft.js?v=9"></script>
+  <script src="js/load.js?v=9"></script>
 </body>
 </html>

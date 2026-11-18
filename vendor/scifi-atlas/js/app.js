@@ -530,7 +530,7 @@
     syncKeyButton();
     updateInsets();
   });
-  if (mobile.matches) app.classList.add('key-closed');
+  if (!mobile.matches) app.classList.remove('key-closed');
   syncKeyButton();
 
   $('zoom-in').addEventListener('click', function () { chart.zoomBy(1.6); });
