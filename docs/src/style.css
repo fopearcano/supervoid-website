@@ -59,6 +59,68 @@ button { color: inherit; }
   overflow-x: hidden;
   overflow-y: auto;
 }
+.void-menu {
+  position: absolute;
+  z-index: 5;
+  top: clamp(18px, 2.8vw, 34px);
+  right: clamp(18px, 3.8vw, 58px);
+}
+.void-menu-button {
+  display: grid;
+  place-items: center;
+  width: clamp(48px, 4.6vw, 62px);
+  height: clamp(48px, 4.6vw, 62px);
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+  filter: drop-shadow(0 0 7px rgba(255, 255, 255, .35));
+  transition: filter .22s ease, transform .22s ease;
+}
+.void-menu-button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.black-hole-disc,
+.black-hole-edge {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.black-hole-disc { stroke-width: 1.4; }
+.black-hole-edge { stroke: var(--signal); stroke-width: 1.2; }
+.black-hole-core { fill: #000; }
+.void-menu-button:hover,
+.void-menu.is-open .void-menu-button {
+  filter: drop-shadow(0 0 8px rgba(125, 255, 156, .72)) drop-shadow(0 0 15px rgba(255, 79, 216, .32));
+  transform: scale(1.04);
+}
+.void-menu-panel {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  width: 188px;
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  background: rgba(5, 10, 11, .96);
+  box-shadow: 0 0 28px rgba(125, 255, 156, .16);
+  backdrop-filter: blur(8px);
+}
+.void-menu-panel[hidden] { display: none; }
+.void-menu-panel a {
+  display: block;
+  padding: 11px 2px;
+  border-bottom: 1px solid rgba(160, 255, 184, .24);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font: 500 13px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
+}
+.void-menu-panel a:last-child { border-bottom: 0; }
+.void-menu-panel a:hover { color: var(--signal); text-shadow: 0 0 9px rgba(125, 255, 156, .5); }
 .catalogue-page {
   display: flex;
   flex-direction: column;
@@ -564,6 +626,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
 
 @media (max-width: 700px) {
   .home { --gap-min: clamp(24px, 4svh, 40px); }
+  .void-menu { top: 16px; right: 15px; }
+  .void-menu-button { width: 46px; height: 46px; }
+  .void-menu-panel { width: 172px; max-width: calc(100vw - 30px); }
   .masthead { padding-top: clamp(18px, 3svh, 24px); }
   .masthead h1 { font-size: clamp(40px, calc(14.22vw - 4.8px), 92px); }
   .edition { font-size: 27px; }

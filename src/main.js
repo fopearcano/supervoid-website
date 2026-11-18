@@ -56,6 +56,25 @@ function home() {
   const instagram = safeSocialUrl(window.SUPERVOID_INSTAGRAM_URL || defaultSocialUrls.instagram, 'instagram.com');
   const formDisabled = newsletterEndpoint ? '' : ' disabled';
   return `<main class="home">
+    <div class="void-menu">
+      <button class="void-menu-button" type="button" aria-label="Open site menu" aria-controls="void-menu-links" aria-expanded="false">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64">
+          <g class="black-hole-disc">
+            <ellipse cx="32" cy="32" rx="27" ry="10"/>
+            <ellipse cx="32" cy="32" rx="24" ry="7" transform="rotate(-16 32 32)"/>
+            <path d="M8 27c9-9 37-12 48 0M9 38c12 8 35 9 46-1"/>
+          </g>
+          <circle class="black-hole-core" cx="32" cy="32" r="11"/>
+          <circle class="black-hole-edge" cx="32" cy="32" r="12.5"/>
+        </svg>
+      </button>
+      <nav id="void-menu-links" class="void-menu-panel" aria-label="Site navigation" hidden>
+        <a href="/elsewhere/">Elsewhere</a>
+        <a href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">D.M.Lab</a>
+        <a href="/scifi-atlas/">I.F.Atlas</a>
+        <a href="mailto:supervoid.editions@gmail.com">Contact</a>
+      </nav>
+    </div>
     <header class="masthead">
       <p class="books-comment" aria-label="Stories for distant minds"><span aria-hidden="true">Stories</span><span aria-hidden="true">For</span><span aria-hidden="true">Distant</span><span aria-hidden="true">Minds</span></p>
       <h1 aria-label="Supervoid"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">P</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">V</span><span aria-hidden="true">O</span><span aria-hidden="true">I</span><span aria-hidden="true">D</span></h1>
@@ -188,6 +207,38 @@ if (currentPath() === '/catalogue') {
 const initialPath = currentPath();
 const app = document.querySelector('#app');
 app.innerHTML = (initialPath === '/elsewhere' ? catalogue : home)() + dialogMarkup;
+
+const siteMenu = document.querySelector('.void-menu');
+const siteMenuToggle = siteMenu?.querySelector('.void-menu-button');
+const siteMenuPanel = siteMenu?.querySelector('.void-menu-panel');
+
+function setSiteMenu(open, restoreFocus = false) {
+  if (!siteMenuToggle || !siteMenuPanel) return;
+  siteMenuToggle.setAttribute('aria-expanded', String(open));
+  siteMenuToggle.setAttribute('aria-label', open ? 'Close site menu' : 'Open site menu');
+  siteMenuPanel.hidden = !open;
+  siteMenu.classList.toggle('is-open', open);
+  if (!open && restoreFocus) siteMenuToggle.focus();
+}
+
+siteMenuToggle?.addEventListener('click', () => {
+  setSiteMenu(siteMenuToggle.getAttribute('aria-expanded') !== 'true');
+});
+
+siteMenuPanel?.addEventListener('click', (event) => {
+  if (event.target.closest('a')) setSiteMenu(false);
+});
+
+document.addEventListener('click', (event) => {
+  if (siteMenu && !siteMenu.contains(event.target)) setSiteMenu(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && siteMenuToggle?.getAttribute('aria-expanded') === 'true') {
+    event.preventDefault();
+    setSiteMenu(false, true);
+  }
+});
 
 const dialog = document.querySelector('#information-dialog');
 const dialogTitle = dialog.querySelector('#dialog-title');
