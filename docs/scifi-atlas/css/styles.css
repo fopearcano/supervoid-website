@@ -449,6 +449,7 @@ button { cursor: pointer; }
 .key-section #load-apply { justify-content: center; }
 .load-summary, .load-help { margin: 0; font-size: var(--t-xs); color: var(--ink-2); }
 .load-help { color: var(--ink-3); line-height: 1.4; }
+.key-scroll-note { display: none; margin: 0; font: 500 var(--t-xs)/1.4 var(--f-mono); color: var(--beacon); }
 .key-title {
   margin: 0;
   display: flex;
@@ -1041,13 +1042,23 @@ button.g-cite:hover { text-decoration-color: var(--fuchsia); }
   .views { flex: 1; }
   .views button { flex: 1; padding: 0 4px; font-size: 0.75rem; }
   .key {
+    position: fixed;
     top: calc(var(--edge-t) + 140px);
     right: var(--edge-r);
+    bottom: var(--edge-b);
+    left: var(--edge-l);
     width: auto;
-    max-height: calc(100% - var(--edge-t) - var(--edge-b) - 190px);
-    z-index: 12;
+    max-height: none;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    touch-action: pan-y;
+    scrollbar-gutter: stable;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    z-index: 30;
     background: var(--panel-solid);
   }
+  .key-scroll-note { display: block; }
   .detail {
     top: auto;
     left: 0; right: 0; bottom: 0;
