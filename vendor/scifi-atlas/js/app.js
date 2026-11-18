@@ -8,28 +8,50 @@
   var app = $('app');
   var chart = S.createChart($('chart'), $('starfield'));
   var mobile = window.matchMedia('(max-width: 680px)');
+  var load = S.loadOptions;
 
   var ui = {
     view: 'galaxy',
     selected: null,
     lineage: false,
     sectorsOn: {},
-    yearFrom: -Infinity,
-    yearTo: Infinity,
-    awardsOnly: false,
+    yearFrom: load.fromYear,
+    yearTo: load.toYear,
+    awardsOnly: load.awardsOnly,
     tour: null,
     step: 0,
     sort: { key: 'year', dir: 'asc' },
     guideTab: 'themes',
     spotlight: null
   };
-  S.sectors.forEach(function (s) { ui.sectorsOn[s.id] = true; });
+  S.sectors.forEach(function (s) { ui.sectorsOn[s.id] = !load.sectors || load.sectors.indexOf(s.id) >= 0; });
 
-  var minYear = Math.min.apply(null, S.works.map(function (w) { return w.year; }));
-  var maxYear = Math.max.apply(null, S.works.map(function (w) { return w.year; }));
+  var minYear = S.catalog.minYear;
+  var maxYear = S.catalog.maxYear;
 
-  $('tagline').textContent = S.works.length + ' works · ' + Object.keys(S.authors).length + ' authors · ' +
-    S.yearText({ year: minYear, circa: true }) + ' to ' + maxYear;
+  $('tagline').textContent = S.works.length + ' / ' + S.catalog.total + ' works · ' +
+    Object.keys(S.authors).length + ' authors';
+
+  $('load-level').value = load.mode;
+  $('load-summary').textContent = S.works.length + ' of ' + S.catalog.total + ' works loaded' +
+    (load.errors.length ? ' · ' + load.errors.length + ' catalog file(s) unavailable' : '') + '.';
+  $('awards-only').checked = load.awardsOnly;
+
+  $('load-apply').addEventListener('click', function () {
+    var next = new URL(location.href);
+    next.searchParams.set('load', $('load-level').value);
+    var active = S.sectors.filter(function (s) { return ui.sectorsOn[s.id]; }).map(function (s) { return s.id; });
+    if (active.length === S.sectors.length) next.searchParams.delete('sectors');
+    else next.searchParams.set('sectors', active.join(','));
+    if (ui.yearFrom > minYear) next.searchParams.set('from', ui.yearFrom);
+    else next.searchParams.delete('from');
+    if (ui.yearTo < maxYear) next.searchParams.set('to', ui.yearTo);
+    else next.searchParams.delete('to');
+    if (ui.awardsOnly) next.searchParams.set('awards', '1');
+    else next.searchParams.delete('awards');
+    next.hash = '';
+    location.assign(next.href);
+  });
 
   // ---- Insets: keep the chart centred in the space the panels leave free ------
 
@@ -399,7 +421,7 @@
 
   function renderCatalogue() {
     var works = S.works.filter(passes);
-    $('catalogue').innerHTML = S.renderCatalogue(works, ui.sort, S.works.length, ui.selected);
+    $('catalogue').innerHTML = S.renderCatalogue(works, ui.sort, S.works.length, ui.selected, S.catalog.total);
   }
 
   function markCatalogueSelection() {
@@ -564,8 +586,13 @@
 
   // ---- Start ----------------------------------------------------------------------------------
 
-  renderSectorList();
-  onRange.call($('year-to'));
+  $('year-from').value = Math.round((G.yearToX(ui.yearFrom) - X0) / (X1 - X0) * 100);
+  $('year-to').value = Math.round((G.yearToX(ui.yearTo) - X0) / (X1 - X0) * 100);
+  $('year-from-out').textContent = ui.yearFrom < 1000 ? ui.yearFrom + ' CE' : ui.yearFrom;
+  $('year-to-out').textContent = ui.yearTo;
+  $('range-fill').style.left = $('year-from').value + '%';
+  $('range-fill').style.right = (100 - $('year-to').value) + '%';
+  applyFilters();
   updateInsets();
   chart.fit(false);
   fromHash();

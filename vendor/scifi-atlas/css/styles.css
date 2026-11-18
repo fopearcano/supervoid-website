@@ -416,6 +416,19 @@ button { cursor: pointer; }
 }
 .app.key-closed .key { display: none; }
 .key-section { display: flex; flex-direction: column; gap: 8px; }
+.key-section #load-level {
+  width: 100%;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--panel-solid);
+  color: var(--ink);
+  font: 500 var(--t-sm) var(--f-body);
+}
+.key-section #load-apply { justify-content: center; }
+.load-summary, .load-help { margin: 0; font-size: var(--t-xs); color: var(--ink-2); }
+.load-help { color: var(--ink-3); line-height: 1.4; }
 .key-title {
   margin: 0;
   display: flex;

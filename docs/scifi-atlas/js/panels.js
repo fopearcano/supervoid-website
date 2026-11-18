@@ -149,7 +149,7 @@
     return w[key];
   }
 
-  S.renderCatalogue = function (works, sort, total, selected) {
+  S.renderCatalogue = function (works, sort, total, selected, fullTotal) {
     var dir = sort.dir === 'desc' ? -1 : 1;
     var rows = works.slice().sort(function (a, b) {
       var va = sortValue(a, sort.key);
@@ -158,7 +158,8 @@
       return c * dir || a.year - b.year;
     });
     var html = '<div class="cat-inner"><p class="cat-summary">Showing <strong>' + works.length + '</strong> of ' + total +
-      ' works. The sector, year and award filters in the key apply here too.</p>';
+      ' loaded works' + (fullTotal > total ? ' (' + fullTotal + ' in the full catalog)' : '') +
+      '. The sector, year and award filters in the key apply here too.</p>';
     html += '<div class="cat-scroll"><table class="cat-table"><thead><tr>';
     columns.forEach(function (c) {
       var active = c.key === sort.key;
