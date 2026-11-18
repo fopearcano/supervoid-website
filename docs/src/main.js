@@ -65,13 +65,12 @@ function home() {
             <path d="M8 27c9-9 37-12 48 0M9 38c12 8 35 9 46-1"/>
           </g>
           <circle class="black-hole-core" cx="32" cy="32" r="11"/>
-          <circle class="black-hole-edge" cx="32" cy="32" r="12.5"/>
         </svg>
       </button>
       <nav id="void-menu-links" class="void-menu-panel" aria-label="Site navigation" hidden>
         <a href="/elsewhere/">Elsewhere</a>
-        <a href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">D.M.Lab</a>
-        <a href="/scifi-atlas/">I.F.Atlas</a>
+        <a href="https://github.com/distantmindslab" target="_blank" rel="noopener noreferrer">LAB</a>
+        <a href="/scifi-atlas/">ATLAS</a>
         <a href="mailto:supervoid.editions@gmail.com">Contact</a>
       </nav>
     </div>

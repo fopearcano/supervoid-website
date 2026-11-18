@@ -84,15 +84,13 @@ button { color: inherit; }
   height: 100%;
   overflow: visible;
 }
-.black-hole-disc,
-.black-hole-edge {
+.black-hole-disc {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .black-hole-disc { stroke-width: 1.4; }
-.black-hole-edge { stroke: var(--signal); stroke-width: 1.2; }
 .black-hole-core { fill: #000; }
 .void-menu-button:hover,
 .void-menu.is-open .void-menu-button {
