@@ -472,6 +472,35 @@ button { color: inherit; }
   font: 500 12px/1.2 "Cormorant Garamond", Garamond, Georgia, serif;
 }
 .description { max-width: 460px; color: var(--muted); font: 400 18px/1.5 "Cormorant Garamond", Garamond, Georgia, serif; }
+.project-logline {
+  max-width: 640px;
+  margin: clamp(27px, 3.2vw, 38px) 0 0;
+  color: var(--white);
+  font: 400 clamp(19px, 2vw, 23px)/1.45 "Cormorant Garamond", Garamond, Georgia, serif;
+}
+.project-media {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: clamp(22px, 3vw, 31px);
+}
+.qdmt-blueprint { width: 100%; }
+.project-only {
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+.project-only .book-copy { grid-column: 1 / -1; min-width: 0; }
+.project-title {
+  margin: clamp(25px, 3.2vw, 38px) 0 0;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font: 500 clamp(31px, 4.8vw, 53px)/1 "Cormorant Garamond", Garamond, Georgia, serif;
+}
+.supervillained-art {
+  width: clamp(210px, 32vw, 380px);
+  margin-left: auto;
+}
 .information-dialog {
   width: min(644px, calc(100vw - 32px));
   max-width: none;
@@ -569,6 +598,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outlin
   .book { grid-template-columns: 1fr; gap: 29px; padding: 44px 0; }
   .cover { width: min(100%, 312px); margin: 0 auto; }
   .description { font-size: 18px; }
+  .project-logline { font-size: 18px; }
+  .supervillained-art { width: min(72vw, 310px); }
   .information-dialog { max-height: 88svh; }
   .dialog-inner { padding: 51px 27px 29px; }
   .dialog-title { font-size: clamp(29px, 7.4vw, 42px); }

@@ -125,6 +125,16 @@ function catalogue() {
         <div class="book-copy">
           <p>Forthcoming</p>
           <p class="description">First publication is taking shape. Its release date will be shared soon... as soon as an artist wakes up from his/her dream... stay tuned!</p>
+          <p class="project-logline">In an ucronian Paris, 2 venetian cousins finds out how to time travel with a bathtube</p>
+          <img class="project-media qdmt-blueprint" src="/assets/qdmt-time-machine-blueprint.png" alt="Handwritten blueprint of the bathtub time machine" loading="lazy" decoding="async">
+        </div>
+      </article>
+      <article class="book project-only supervillained" aria-labelledby="supervillained-title">
+        <div class="book-copy">
+          <p>Forthcoming</p>
+          <h2 id="supervillained-title" class="project-title">SUPERVILLAINED</h2>
+          <p class="project-logline">A crazy and bullied maltese dog dreams of crusades and come back knighted, or I would say... SUPERVILLAINED</p>
+          <img class="project-media supervillained-art" src="/assets/supervillained-zampano.gif" alt="Animated illustration of Zampano, the Maltese dog" loading="lazy" decoding="async">
         </div>
       </article>
     </section>

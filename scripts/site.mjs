@@ -15,12 +15,15 @@ const runtimeAssets = [
   'supervoid-background.webm',
   'supervoid-background.mp4',
   'elsewhere-neon-green-fuchsia.webp',
+  'qdmt-time-machine-blueprint.png',
+  'supervillained-zampano.gif',
 ];
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.png': 'image/png',
+  '.gif': 'image/gif',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
