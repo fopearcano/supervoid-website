@@ -125,7 +125,7 @@ function catalogue() {
   return `<main class="catalogue-page">
     ${topbar()}
     <section class="catalogue-intro" aria-labelledby="catalogue-title">
-      <h1 id="catalogue-title" class="catalogue-heading">Soon bookcrossing...</h1>
+      <h1 id="catalogue-title" class="catalogue-heading">FORTHCOMING</h1>
       <div class="rule" aria-hidden="true"></div>
     </section>
     <section class="books" aria-label="Forthcoming publications">
@@ -138,18 +138,17 @@ function catalogue() {
             <span class="cover-title-or">or</span>
             <span class="cover-title-english" lang="en">That Bloody<br>Time Machine</span>
           </h2>
-          <small>Forthcoming</small>
+          <small>ANALGESIC FOR FUTURE TIMES</small>
         </div>
         <div class="book-copy">
-          <p>Forthcoming</p>
           <p class="description">First publication is taking shape. Its release date will be shared soon... as soon as an artist wakes up from his/her dream... stay tuned!</p>
           <p class="project-logline">In an ucronian Paris, 2 venetian cousins finds out how to time travel with a bathtube</p>
           <img class="project-media qdmt-blueprint" src="/assets/qdmt-time-machine-blueprint.png" alt="Handwritten blueprint of the bathtub time machine" loading="lazy" decoding="async">
+          <p class="project-status">SOON BOOKCROSSING...</p>
         </div>
       </article>
       <article class="book project-only supervillained" aria-labelledby="supervillained-title">
         <div class="book-copy">
-          <p>Forthcoming</p>
           <h2 id="supervillained-title" class="project-title">SUPERVILLAINED</h2>
           <p class="project-logline">A crazy and bullied maltese dog dreams of crusades and come back knighted, or I would say... SUPERVILLAINED</p>
           <img class="project-media supervillained-art" src="/assets/supervillained-zampano.gif" alt="Animated illustration of Zampano, the Maltese dog" loading="lazy" decoding="async">
